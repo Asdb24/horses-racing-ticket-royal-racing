@@ -489,7 +489,8 @@ const horses = [
     foaled: '2021-03-04',
     started: 2023,
     record: '6 starts • 5 wins',
-    titles: 'Dewhurst Stakes (2023), Derby (2024)'
+    titles: 'Dewhurst Stakes (2023), Derby (2024)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/City_of_Troy_2024.jpg'
   },
   {
     name: 'Luxembourg',
@@ -498,7 +499,8 @@ const horses = [
     foaled: '2019-03-08',
     started: 2021,
     record: '16 starts • 8 wins',
-    titles: 'Irish Champion Stakes (2023)'
+    titles: 'Irish Champion Stakes (2023)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Luxembourg_racehorse_2023.jpg'
   },
   {
     name: 'Ka Ying Rising',
@@ -507,7 +509,8 @@ const horses = [
     foaled: '2018-10-02',
     started: 2021,
     record: '16 starts • 12 wins',
-    titles: 'Hong Kong Sprint (2024)'
+    titles: 'Hong Kong Sprint (2024)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/36/Ka_Ying_Rising_2024.jpg'
   },
   {
     name: 'Romantic Warrior',
@@ -599,7 +602,8 @@ const horses = [
     foaled: '2015-08-12',
     started: 2018,
     record: '31 starts • 26 wins',
-    titles: 'Hong Kong Mile (2020, 2021, 2022)'
+    titles: 'Hong Kong Mile (2020, 2021, 2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Golden_Sixty_2021.jpg'
   },
   {
     name: 'Adare Manor',
@@ -608,7 +612,8 @@ const horses = [
     foaled: '2018-02-22',
     started: 2020,
     record: '15 starts • 9 wins',
-    titles: 'Clement L. Hirsch Stakes (2021, 2022, 2023)'
+    titles: 'Clement L. Hirsch Stakes (2021, 2022, 2023)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Adare_Manor_2022.jpg'
   },
   {
     name: "Jackie's Warrior",
@@ -617,7 +622,8 @@ const horses = [
     foaled: '2018-03-18',
     started: 2020,
     record: '22 starts • 12 wins',
-    titles: "Breeders' Cup Sprint (2021)"
+    titles: "Breeders' Cup Sprint (2021)",
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Jackies_Warrior_2021.jpg'
   },
   {
     name: 'Mo Donegal',
@@ -626,7 +632,8 @@ const horses = [
     foaled: '2019-04-18',
     started: 2021,
     record: '10 starts • 4 wins',
-    titles: 'Belmont Stakes (2022)'
+    titles: 'Belmont Stakes (2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Mo_Donegal_2022.jpg'
   }
 ];
 
@@ -700,7 +707,8 @@ const hallOfFame = [
     record: '21 starts • 12 wins',
     titles: 'Japanese Triple Crown (1994)',
     retired: '1996',
-    memorial: '1998-09-27'
+    memorial: '1998-09-27',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Narita_Brian_1994.jpg'
   },
   {
     name: 'Admire Don',
@@ -722,7 +730,8 @@ const hallOfFame = [
     record: '26 starts • 9 wins',
     titles: 'Japan Cup (2007), Yasuda Kinen (2009)',
     retired: '2009',
-    memorial: '—'
+    memorial: '—',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Vodka_2007_Japan_Cup.jpg'
   },
   {
     name: 'Winx',
@@ -789,7 +798,8 @@ const hallOfFame = [
     record: '6 starts • 6 wins',
     titles: 'Triple Crown (2018)',
     retired: '2018',
-    memorial: '—'
+    memorial: '—',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/af/Justify_2018.jpg'
   },
   {
     name: 'Black Caviar',
@@ -800,7 +810,8 @@ const hallOfFame = [
     record: '25 starts • 25 wins',
     titles: 'Diamond Jubilee Stakes (2012)',
     retired: '2013',
-    memorial: '—'
+    memorial: '—',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Black_Caviar_2012.jpg'
   },
   {
     name: 'Wise Dan',
@@ -811,7 +822,8 @@ const hallOfFame = [
     record: '23 starts • 14 wins',
     titles: 'Breeders\' Cup Mile (2012, 2013)',
     retired: '2015',
-    memorial: '—'
+    memorial: '—',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/74/Wise_Dan_2013.jpg'
   }
 ];
 
@@ -853,7 +865,8 @@ const jockeys = [
     status: 'Active',
     started: 1996,
     wins: 'Over 2,600 wins',
-    awards: 'Japanese Derby, Japan Cup'
+    awards: 'Japanese Derby, Japan Cup',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/45/Yuichi_Fukunaga_2018.jpg'
   },
   {
     name: 'Takeshi Yokoyama',
@@ -862,7 +875,8 @@ const jockeys = [
     status: 'Active',
     started: 2016,
     wins: 'Over 500 wins',
-    awards: 'NHK Mile Cup (2022)'
+    awards: 'NHK Mile Cup (2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Takeshi_Yokoyama_2022.jpg'
   },
   {
     name: 'Hideaki Miyuki',
@@ -871,7 +885,8 @@ const jockeys = [
     status: 'Active',
     started: 1994,
     wins: 'Over 900 wins',
-    awards: 'Dubai Turf (2022)'
+    awards: 'Dubai Turf (2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2d/Hideaki_Miyuki_2022.jpg'
   },
   {
     name: 'Mirco Demuro',
@@ -900,7 +915,8 @@ const jockeys = [
     status: 'Active',
     started: 2009,
     wins: 'Over 1,100 wins',
-    awards: 'Takamatsunomiya Kinen (2021)'
+    awards: 'Takamatsunomiya Kinen (2021)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Kohei_Matsuyama_2021.jpg'
   },
   {
     name: 'Akira Sugawara',
@@ -909,7 +925,8 @@ const jockeys = [
     status: 'Active',
     started: 2019,
     wins: 'Over 400 wins',
-    awards: 'JRA Best Young Jockey (2022)'
+    awards: 'JRA Best Young Jockey (2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Akira_Sugawara_2022.jpg'
   },
   {
     name: 'Ryuusei Sakai',
@@ -918,7 +935,8 @@ const jockeys = [
     status: 'Active',
     started: 2016,
     wins: 'Over 500 wins',
-    awards: 'Dubai World Cup (2023)'
+    awards: 'Dubai World Cup (2023)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Ryuusei_Sakai_2023.jpg'
   },
   {
     name: 'John Velazquez',
@@ -937,7 +955,8 @@ const jockeys = [
     status: 'Active',
     started: 2000,
     wins: 'Over 2,500 wins',
-    awards: 'Epsom Derby, Prix de l\'Arc de Triomphe'
+    awards: 'Epsom Derby, Prix de l\'Arc de Triomphe',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Ryan_Moore_2016.jpg'
   },
   {
     name: 'William Buick',
@@ -946,7 +965,8 @@ const jockeys = [
     status: 'Active',
     started: 2006,
     wins: 'Over 1,700 wins',
-    awards: 'Epsom Derby, Dubai World Cup'
+    awards: 'Epsom Derby, Dubai World Cup',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1f/William_Buick_2019.jpg'
   },
   {
     name: 'Christophe Lemaire',
@@ -955,7 +975,8 @@ const jockeys = [
     status: 'Active',
     started: 1999,
     wins: 'Over 1,800 wins',
-    awards: 'Japan Cup, Japanese Derby'
+    awards: 'Japan Cup, Japanese Derby',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Christophe_Lemaire_2019.jpg'
   },
   {
     name: 'Joao Moreira',
@@ -964,7 +985,8 @@ const jockeys = [
     status: 'Active',
     started: 2006,
     wins: 'Over 2,000 wins',
-    awards: 'Hong Kong Champion Jockey'
+    awards: 'Hong Kong Champion Jockey',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8e/Joao_Moreira_2017.jpg'
   },
   {
     name: 'Zac Purton',
@@ -973,7 +995,8 @@ const jockeys = [
     status: 'Active',
     started: 2000,
     wins: 'Over 2,000 wins',
-    awards: 'Hong Kong Champion Jockey'
+    awards: 'Hong Kong Champion Jockey',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Zac_Purton_2019.jpg'
   },
   {
     name: 'James McDonald',
@@ -982,7 +1005,8 @@ const jockeys = [
     status: 'Active',
     started: 2007,
     wins: 'Over 1,800 wins',
-    awards: 'Cox Plate, Hong Kong Cup'
+    awards: 'Cox Plate, Hong Kong Cup',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5d/James_McDonald_2019.jpg'
   },
   {
     name: 'Irad Ortiz Jr.',
@@ -991,7 +1015,8 @@ const jockeys = [
     status: 'Active',
     started: 2012,
     wins: 'Over 3,000 wins',
-    awards: 'Eclipse Award for Outstanding Jockey'
+    awards: 'Eclipse Award for Outstanding Jockey',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7a/Irad_Ortiz_Jr_2017.jpg'
   },
   {
     name: 'Jose Ortiz',
@@ -1000,7 +1025,8 @@ const jockeys = [
     status: 'Active',
     started: 2012,
     wins: 'Over 2,700 wins',
-    awards: 'Eclipse Award for Outstanding Jockey'
+    awards: 'Eclipse Award for Outstanding Jockey',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3b/Jose_Ortiz_2017.jpg'
   },
   {
     name: 'Flavien Prat',
@@ -1009,7 +1035,8 @@ const jockeys = [
     status: 'Active',
     started: 2009,
     wins: 'Over 2,000 wins',
-    awards: 'Breeders\' Cup Turf, Eclipse Award'
+    awards: 'Breeders\' Cup Turf, Eclipse Award',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Flavien_Prat_2016.jpg'
   },
   {
     name: 'Oisin Murphy',
@@ -1018,7 +1045,8 @@ const jockeys = [
     status: 'Active',
     started: 2013,
     wins: 'Over 1,200 wins',
-    awards: 'British Champion Jockey (2019-2021)'
+    awards: 'British Champion Jockey (2019-2021)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Oisin_Murphy_2019.jpg'
   },
   {
     name: 'Hollie Doyle',
@@ -1037,7 +1065,8 @@ const jockeys = [
     status: 'Active',
     started: 2009,
     wins: 'Over 600 wins',
-    awards: 'JRA Best New Jockey (2014)'
+    awards: 'JRA Best New Jockey (2014)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Rachel_King_2019.jpg'
   }
 ];
 
