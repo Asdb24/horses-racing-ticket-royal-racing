@@ -252,6 +252,78 @@ const horses = [
     started: 2020,
     record: '17 starts • 10 wins',
     titles: "Breeders' Cup Sprint (2022, 2023)"
+  },
+  {
+    name: 'Omaha Beach',
+    country: 'USA',
+    color: 'Bay',
+    foaled: '2016-02-24',
+    started: 2018,
+    record: '7 starts • 4 wins',
+    titles: 'Arkansas Derby (2019), Malibu Stakes (2019)'
+  },
+  {
+    name: 'Mishriff',
+    country: 'UK',
+    color: 'Bay',
+    foaled: '2017-03-16',
+    started: 2019,
+    record: '20 starts • 7 wins',
+    titles: 'Saudi Cup (2021), International Stakes (2021)'
+  },
+  {
+    name: 'Hukum',
+    country: 'UK',
+    color: 'Bay',
+    foaled: '2017-02-23',
+    started: 2019,
+    record: '16 starts • 9 wins',
+    titles: 'King George VI & Queen Elizabeth Stakes (2023)'
+  },
+  {
+    name: 'Enable',
+    country: 'UK',
+    color: 'Bay',
+    foaled: '2014-03-11',
+    started: 2016,
+    record: '19 starts • 15 wins',
+    titles: "Prix de l'Arc de Triomphe (2017, 2018)"
+  },
+  {
+    name: 'Golden Sixty',
+    country: 'Hong Kong',
+    color: 'Bay',
+    foaled: '2015-08-12',
+    started: 2018,
+    record: '31 starts • 26 wins',
+    titles: 'Hong Kong Mile (2020, 2021, 2022)'
+  },
+  {
+    name: 'Adare Manor',
+    country: 'USA',
+    color: 'Bay',
+    foaled: '2018-02-22',
+    started: 2020,
+    record: '15 starts • 9 wins',
+    titles: 'Clement L. Hirsch Stakes (2021, 2022, 2023)'
+  },
+  {
+    name: "Jackie's Warrior",
+    country: 'USA',
+    color: 'Chestnut',
+    foaled: '2018-03-18',
+    started: 2020,
+    record: '22 starts • 12 wins',
+    titles: "Breeders' Cup Sprint (2021)"
+  },
+  {
+    name: 'Mo Donegal',
+    country: 'USA',
+    color: 'Bay',
+    foaled: '2019-04-18',
+    started: 2021,
+    record: '10 starts • 4 wins',
+    titles: 'Belmont Stakes (2022)'
   }
 ];
 
@@ -320,6 +392,50 @@ const hallOfFame = [
     record: '20 starts • 12 wins',
     titles: 'Japan Cup (2016), Arima Kinen (2016)',
     retired: '2017',
+    memorial: '—'
+  },
+  {
+    name: 'American Pharoah',
+    country: 'USA',
+    color: 'Bay',
+    foaled: '2012-02-02',
+    started: 2014,
+    record: '11 starts • 9 wins',
+    titles: 'Triple Crown (2015), Breeders\' Cup Classic (2015)',
+    retired: '2015',
+    memorial: '—'
+  },
+  {
+    name: 'Justify',
+    country: 'USA',
+    color: 'Chestnut',
+    foaled: '2015-03-28',
+    started: 2018,
+    record: '6 starts • 6 wins',
+    titles: 'Triple Crown (2018)',
+    retired: '2018',
+    memorial: '—'
+  },
+  {
+    name: 'Black Caviar',
+    country: 'Australia',
+    color: 'Bay',
+    foaled: '2006-08-18',
+    started: 2008,
+    record: '25 starts • 25 wins',
+    titles: 'Diamond Jubilee Stakes (2012)',
+    retired: '2013',
+    memorial: '—'
+  },
+  {
+    name: 'Wise Dan',
+    country: 'USA',
+    color: 'Bay',
+    foaled: '2007-04-15',
+    started: 2009,
+    record: '23 starts • 14 wins',
+    titles: 'Breeders\' Cup Mile (2012, 2013)',
+    retired: '2015',
     memorial: '—'
   }
 ];
@@ -396,6 +512,69 @@ const jockeys = [
     started: 2000,
     wins: 'Over 2,000 wins',
     awards: 'Hong Kong Champion Jockey'
+  },
+  {
+    name: 'James McDonald',
+    birth: '1991-01-26',
+    gender: 'Male',
+    status: 'Active',
+    started: 2007,
+    wins: 'Over 1,800 wins',
+    awards: 'Cox Plate, Hong Kong Cup'
+  },
+  {
+    name: 'Irad Ortiz Jr.',
+    birth: '1992-08-11',
+    gender: 'Male',
+    status: 'Active',
+    started: 2012,
+    wins: 'Over 3,000 wins',
+    awards: 'Eclipse Award for Outstanding Jockey'
+  },
+  {
+    name: 'Jose Ortiz',
+    birth: '1993-10-02',
+    gender: 'Male',
+    status: 'Active',
+    started: 2012,
+    wins: 'Over 2,700 wins',
+    awards: 'Eclipse Award for Outstanding Jockey'
+  },
+  {
+    name: 'Flavien Prat',
+    birth: '1992-08-04',
+    gender: 'Male',
+    status: 'Active',
+    started: 2009,
+    wins: 'Over 2,000 wins',
+    awards: 'Breeders\' Cup Turf, Eclipse Award'
+  },
+  {
+    name: 'Oisin Murphy',
+    birth: '1995-09-06',
+    gender: 'Male',
+    status: 'Active',
+    started: 2013,
+    wins: 'Over 1,200 wins',
+    awards: 'British Champion Jockey (2019-2021)'
+  },
+  {
+    name: 'Hollie Doyle',
+    birth: '1996-10-11',
+    gender: 'Female',
+    status: 'Active',
+    started: 2013,
+    wins: 'Over 1,100 wins',
+    awards: 'UK Champion Apprentice (2017)'
+  },
+  {
+    name: 'Rachel King',
+    birth: '1990-07-31',
+    gender: 'Female',
+    status: 'Active',
+    started: 2009,
+    wins: 'Over 600 wins',
+    awards: 'JRA Best New Jockey (2014)'
   }
 ];
 
