@@ -2,6 +2,7 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
+const { exec } = require('child_process');
 
 const PORT = process.env.PORT || 3000;
 
@@ -35,6 +36,96 @@ const featuredRaces = [
     horses: 16,
     seatsRemaining: 180,
     priceUSD: 140
+  },
+  {
+    id: 'breeders-cup-classic',
+    name: "Breeders' Cup Classic",
+    location: 'Del Mar, USA',
+    date: '2025-11-01T17:45:00-07:00',
+    distance: '1.25 miles',
+    horses: 14,
+    seatsRemaining: 210,
+    priceUSD: 190
+  },
+  {
+    id: 'preakness-stakes',
+    name: 'Preakness Stakes',
+    location: 'Pimlico Race Course, USA',
+    date: '2025-05-17T18:50:00-04:00',
+    distance: '1 3/16 miles',
+    horses: 14,
+    seatsRemaining: 200,
+    priceUSD: 135
+  },
+  {
+    id: 'japan-cup',
+    name: 'Japan Cup',
+    location: 'Tokyo Racecourse, Japan',
+    date: '2025-11-30T15:40:00+09:00',
+    distance: '2,400 m',
+    horses: 18,
+    seatsRemaining: 240,
+    priceUSD: 150
+  },
+  {
+    id: 'epsom-derby',
+    name: 'Epsom Derby',
+    location: 'Epsom Downs, UK',
+    date: '2025-06-07T15:30:00+01:00',
+    distance: '1 mile 4 furlongs',
+    horses: 16,
+    seatsRemaining: 190,
+    priceUSD: 155
+  },
+  {
+    id: 'belmont-stakes',
+    name: 'Belmont Stakes',
+    location: 'Belmont Park, USA',
+    date: '2025-06-07T19:00:00-04:00',
+    distance: '1.5 miles',
+    horses: 12,
+    seatsRemaining: 170,
+    priceUSD: 130
+  },
+  {
+    id: 'tenno-sho-autumn',
+    name: 'Tenno Sho (Autumn)',
+    location: 'Tokyo Racecourse, Japan',
+    date: '2025-11-02T15:40:00+09:00',
+    distance: '2,000 m',
+    horses: 17,
+    seatsRemaining: 220,
+    priceUSD: 135
+  },
+  {
+    id: 'cheltenham-gold-cup',
+    name: 'Cheltenham Gold Cup',
+    location: 'Cheltenham, UK',
+    date: '2025-03-14T15:30:00+00:00',
+    distance: '3 miles 2½ furlongs',
+    horses: 14,
+    seatsRemaining: 180,
+    priceUSD: 145
+  },
+  {
+    id: 'grand-national',
+    name: 'Grand National',
+    location: 'Aintree, UK',
+    date: '2025-04-05T17:15:00+01:00',
+    distance: '4 miles 2½ furlongs',
+    horses: 40,
+    seatsRemaining: 320,
+    priceUSD: 165
+  },
+  {
+    id: 'nhk-mile-cup',
+    name: 'NHK Mile Cup',
+    location: 'Tokyo Racecourse, Japan',
+    date: '2025-05-11T15:40:00+09:00',
+    distance: '1,600 m',
+    horses: 18,
+    seatsRemaining: 210,
+    priceUSD: 120
   }
 ];
 
@@ -89,6 +180,78 @@ const horses = [
     started: 2010,
     record: '14 starts • 14 wins',
     titles: 'Queen Elizabeth II Stakes (2011), Sussex Stakes (2011)'
+  },
+  {
+    name: 'City of Troy',
+    country: 'UK',
+    color: 'Bay',
+    foaled: '2021-03-04',
+    started: 2023,
+    record: '6 starts • 5 wins',
+    titles: 'Dewhurst Stakes (2023), Derby (2024)'
+  },
+  {
+    name: 'Luxembourg',
+    country: 'Ireland',
+    color: 'Bay',
+    foaled: '2019-03-08',
+    started: 2021,
+    record: '16 starts • 8 wins',
+    titles: 'Irish Champion Stakes (2023)'
+  },
+  {
+    name: 'Ka Ying Rising',
+    country: 'Hong Kong',
+    color: 'Bay',
+    foaled: '2018-10-02',
+    started: 2021,
+    record: '16 starts • 12 wins',
+    titles: 'Hong Kong Sprint (2024)'
+  },
+  {
+    name: 'Romantic Warrior',
+    country: 'Hong Kong',
+    color: 'Bay',
+    foaled: '2018-09-15',
+    started: 2021,
+    record: '24 starts • 17 wins',
+    titles: 'Hong Kong Cup (2022, 2023)'
+  },
+  {
+    name: 'Forever Young',
+    country: 'Japan',
+    color: 'Chestnut',
+    foaled: '2021-02-24',
+    started: 2023,
+    record: '6 starts • 6 wins',
+    titles: 'UAE Derby (2024)'
+  },
+  {
+    name: 'Auguste Rodin',
+    country: 'Ireland',
+    color: 'Bay',
+    foaled: '2020-03-17',
+    started: 2022,
+    record: '13 starts • 7 wins',
+    titles: 'Epsom Derby (2023), Irish Champion Stakes (2023)'
+  },
+  {
+    name: 'National Treasure',
+    country: 'USA',
+    color: 'Bay',
+    foaled: '2020-02-17',
+    started: 2022,
+    record: '14 starts • 5 wins',
+    titles: "Preakness Stakes (2023), Pegasus World Cup (2024)"
+  },
+  {
+    name: 'Elite Power',
+    country: 'USA',
+    color: 'Chestnut',
+    foaled: '2018-04-04',
+    started: 2020,
+    record: '17 starts • 10 wins',
+    titles: "Breeders' Cup Sprint (2022, 2023)"
   }
 ];
 
@@ -114,6 +277,50 @@ const hallOfFame = [
     titles: 'Japanese Triple Crown (2005), Arima Kinen (2006)',
     retired: '2006',
     memorial: '2019-07-30'
+  },
+  {
+    name: 'Winx',
+    country: 'Australia',
+    color: 'Bay',
+    foaled: '2011-09-14',
+    started: 2013,
+    record: '43 starts • 37 wins',
+    titles: 'Cox Plate (2015-2019)',
+    retired: '2019',
+    memorial: '—'
+  },
+  {
+    name: 'Zenyatta',
+    country: 'USA',
+    color: 'Bay',
+    foaled: '2004-04-01',
+    started: 2007,
+    record: '20 starts • 19 wins',
+    titles: "Breeders' Cup Classic (2009)",
+    retired: '2010',
+    memorial: '—'
+  },
+  {
+    name: 'Orfevre',
+    country: 'Japan',
+    color: 'Chestnut',
+    foaled: '2008-05-14',
+    started: 2010,
+    record: '21 starts • 12 wins',
+    titles: 'Japanese Triple Crown (2011)',
+    retired: '2013',
+    memorial: '—'
+  },
+  {
+    name: 'Kitasan Black',
+    country: 'Japan',
+    color: 'Black',
+    foaled: '2012-03-10',
+    started: 2014,
+    record: '20 starts • 12 wins',
+    titles: 'Japan Cup (2016), Arima Kinen (2016)',
+    retired: '2017',
+    memorial: '—'
   }
 ];
 
@@ -144,6 +351,51 @@ const jockeys = [
     started: 1990,
     wins: 'Over 5,000 wins',
     awards: 'Kentucky Derby, Belmont Stakes, Breeders\' Cup Classic'
+  },
+  {
+    name: 'Ryan Moore',
+    birth: '1983-09-18',
+    gender: 'Male',
+    status: 'Active',
+    started: 2000,
+    wins: 'Over 2,500 wins',
+    awards: 'Epsom Derby, Prix de l\'Arc de Triomphe'
+  },
+  {
+    name: 'William Buick',
+    birth: '1988-10-22',
+    gender: 'Male',
+    status: 'Active',
+    started: 2006,
+    wins: 'Over 1,700 wins',
+    awards: 'Epsom Derby, Dubai World Cup'
+  },
+  {
+    name: 'Christophe Lemaire',
+    birth: '1979-05-20',
+    gender: 'Male',
+    status: 'Active',
+    started: 1999,
+    wins: 'Over 1,800 wins',
+    awards: 'Japan Cup, Japanese Derby'
+  },
+  {
+    name: 'Joao Moreira',
+    birth: '1983-09-26',
+    gender: 'Male',
+    status: 'Active',
+    started: 2006,
+    wins: 'Over 2,000 wins',
+    awards: 'Hong Kong Champion Jockey'
+  },
+  {
+    name: 'Zac Purton',
+    birth: '1983-01-03',
+    gender: 'Male',
+    status: 'Active',
+    started: 2000,
+    wins: 'Over 2,000 wins',
+    awards: 'Hong Kong Champion Jockey'
   }
 ];
 
@@ -281,5 +533,17 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Royal Racing running on http://localhost:${PORT}`);
+  const urlToOpen = `http://localhost:${PORT}`;
+  console.log(`Royal Racing running on ${urlToOpen}`);
+  const start =
+    process.platform === 'darwin'
+      ? 'open'
+      : process.platform === 'win32'
+        ? 'start'
+        : 'xdg-open';
+  exec(`${start} ${urlToOpen}`, (err) => {
+    if (err) {
+      console.log('Open your browser at:', urlToOpen);
+    }
+  });
 });
