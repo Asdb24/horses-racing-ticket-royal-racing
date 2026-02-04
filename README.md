@@ -29,6 +29,30 @@ cd backend-java
 mvn spring-boot:run
 ```
 
+## GitHub: push or download
+
+### Push this repo to GitHub
+
+```bash
+git remote add origin https://github.com/<your-username>/<your-repo>.git
+git branch -M main
+git push -u origin main
+```
+
+If you already have a remote named `origin`, update it:
+
+```bash
+git remote set-url origin https://github.com/<your-username>/<your-repo>.git
+git push -u origin main
+```
+
+### Download (clone) from GitHub
+
+```bash
+git clone https://github.com/<your-username>/<your-repo>.git
+cd <your-repo>
+```
+
 ## Notes
 
 - The frontend uses only real-world race names and venues.
