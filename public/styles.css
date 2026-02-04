@@ -209,11 +209,17 @@ main {
       center/cover;
   color: var(--white);
   border-radius: 24px;
-  padding: 80px 40px;
+  padding: 96px 64px;
+}
+
+.hall-hero .section-header {
+  max-width: 720px;
+  padding: 0 16px;
 }
 
 .hall-hero .section-header p,
-.hall-hero .section-header h1 {
+.hall-hero .section-header h1,
+.hall-hero .section-header .eyebrow {
   color: var(--white);
 }
 
