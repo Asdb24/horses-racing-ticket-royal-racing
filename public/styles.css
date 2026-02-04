@@ -271,6 +271,20 @@ main {
   gap: 16px;
 }
 
+.media-frame {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(75, 47, 29, 0.1);
+  background: #fff;
+}
+
+.media-frame img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
 .card .meta {
   display: flex;
   justify-content: space-between;
@@ -423,6 +437,10 @@ main {
   padding: 24px 26px;
   border: 1px solid rgba(75, 47, 29, 0.15);
   box-shadow: var(--shadow);
+}
+
+.profile-card .media-frame img {
+  height: 160px;
 }
 
 .profile-header {

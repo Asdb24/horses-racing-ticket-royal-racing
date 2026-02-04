@@ -15,7 +15,8 @@ const featuredRaces = [
     distance: '1.25 miles',
     horses: 20,
     seatsRemaining: 320,
-    priceUSD: 125
+    priceUSD: 125,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Churchill_Downs_2019.jpg'
   },
   {
     id: 'royal-ascot',
@@ -25,7 +26,8 @@ const featuredRaces = [
     distance: '1 mile (feature races)',
     horses: 16,
     seatsRemaining: 240,
-    priceUSD: 160
+    priceUSD: 160,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Ascot_Racecourse_2006.jpg'
   },
   {
     id: 'arima-kinen',
@@ -45,7 +47,8 @@ const featuredRaces = [
     distance: '1.25 miles',
     horses: 14,
     seatsRemaining: 210,
-    priceUSD: 190
+    priceUSD: 190,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Del_Mar_Racetrack.jpg'
   },
   {
     id: 'preakness-stakes',
@@ -65,7 +68,8 @@ const featuredRaces = [
     distance: '2,400 m',
     horses: 18,
     seatsRemaining: 240,
-    priceUSD: 150
+    priceUSD: 150,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Tokyo_Racecourse_2016.jpg'
   },
   {
     id: 'epsom-derby',
@@ -75,7 +79,8 @@ const featuredRaces = [
     distance: '1 mile 4 furlongs',
     horses: 16,
     seatsRemaining: 190,
-    priceUSD: 155
+    priceUSD: 155,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Epsom_Downs_Racecourse.jpg'
   },
   {
     id: 'belmont-stakes',
@@ -161,7 +166,8 @@ const horses = [
     foaled: '2019-03-23',
     started: 2021,
     record: '10 starts • 8 wins',
-    titles: 'Arima Kinen (2022), Tenno Sho (Autumn) (2022)'
+    titles: 'Arima Kinen (2022), Tenno Sho (Autumn) (2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Equinox_2022_Arima_Kinen.jpg'
   },
   {
     name: 'Flightline',
@@ -170,7 +176,8 @@ const horses = [
     foaled: '2018-03-14',
     started: 2020,
     record: '6 starts • 6 wins',
-    titles: 'Breeders\' Cup Classic (2022), Pacific Classic (2022)'
+    titles: 'Breeders\' Cup Classic (2022), Pacific Classic (2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Flightline_2022.jpg'
   },
   {
     name: 'Frankel',
@@ -179,7 +186,8 @@ const horses = [
     foaled: '2008-02-11',
     started: 2010,
     record: '14 starts • 14 wins',
-    titles: 'Queen Elizabeth II Stakes (2011), Sussex Stakes (2011)'
+    titles: 'Queen Elizabeth II Stakes (2011), Sussex Stakes (2011)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Frankel_%28horse%29.jpg'
   },
   {
     name: 'City of Troy',
@@ -215,7 +223,8 @@ const horses = [
     foaled: '2018-09-15',
     started: 2021,
     record: '24 starts • 17 wins',
-    titles: 'Hong Kong Cup (2022, 2023)'
+    titles: 'Hong Kong Cup (2022, 2023)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Romantic_Warrior_2022_Hong_Kong_Cup.jpg'
   },
   {
     name: 'Forever Young',
@@ -287,7 +296,8 @@ const horses = [
     foaled: '2014-03-11',
     started: 2016,
     record: '19 starts • 15 wins',
-    titles: "Prix de l'Arc de Triomphe (2017, 2018)"
+    titles: "Prix de l'Arc de Triomphe (2017, 2018)",
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Enable_at_Ascot_2019.jpg'
   },
   {
     name: 'Golden Sixty',
@@ -337,7 +347,8 @@ const hallOfFame = [
     record: '21 starts • 16 wins',
     titles: 'Triple Crown (1973), Belmont Stakes record',
     retired: '1974',
-    memorial: '1989-10-04'
+    memorial: '1989-10-04',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Secretariat_-_1973.jpg'
   },
   {
     name: 'Deep Impact',
@@ -348,7 +359,8 @@ const hallOfFame = [
     record: '14 starts • 12 wins',
     titles: 'Japanese Triple Crown (2005), Arima Kinen (2006)',
     retired: '2006',
-    memorial: '2019-07-30'
+    memorial: '2019-07-30',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Deep_Impact_2005.jpg'
   },
   {
     name: 'Winx',
@@ -403,7 +415,8 @@ const hallOfFame = [
     record: '11 starts • 9 wins',
     titles: 'Triple Crown (2015), Breeders\' Cup Classic (2015)',
     retired: '2015',
-    memorial: '—'
+    memorial: '—',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9a/American_Pharoah_2015.jpg'
   },
   {
     name: 'Justify',
@@ -448,7 +461,8 @@ const jockeys = [
     status: 'Active',
     started: 1987,
     wins: 'Over 3,000 wins',
-    awards: 'Prix de l\'Arc de Triomphe (multiple), Champion Jockey (UK)'
+    awards: 'Prix de l\'Arc de Triomphe (multiple), Champion Jockey (UK)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Frankie_Dettori_2014.jpg'
   },
   {
     name: 'Yutaka Take',
@@ -457,7 +471,8 @@ const jockeys = [
     status: 'Active',
     started: 1987,
     wins: 'Over 4,000 wins',
-    awards: 'Japan Cup, Tokyo Yushun (Japanese Derby)'
+    awards: 'Japan Cup, Tokyo Yushun (Japanese Derby)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Yutaka_Take_2012.jpg'
   },
   {
     name: 'John Velazquez',
@@ -466,7 +481,8 @@ const jockeys = [
     status: 'Active',
     started: 1990,
     wins: 'Over 5,000 wins',
-    awards: 'Kentucky Derby, Belmont Stakes, Breeders\' Cup Classic'
+    awards: 'Kentucky Derby, Belmont Stakes, Breeders\' Cup Classic',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/John_Velazquez_2010.jpg'
   },
   {
     name: 'Ryan Moore',
@@ -565,7 +581,8 @@ const jockeys = [
     status: 'Active',
     started: 2013,
     wins: 'Over 1,100 wins',
-    awards: 'UK Champion Apprentice (2017)'
+    awards: 'UK Champion Apprentice (2017)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/9c/Hollie_Doyle_2019.jpg'
   },
   {
     name: 'Rachel King',

@@ -323,6 +323,17 @@ const t = (key) => {
   return key.split('.').reduce((acc, part) => (acc ? acc[part] : undefined), dictionary);
 };
 
+const logoFallback =
+  'data:image/svg+xml;utf8,' +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="80" viewBox="0 0 120 80">' +
+      '<rect width="120" height="80" rx="16" fill="#f3e7d6"/>' +
+      '<text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="28">🏆</text>' +
+    '</svg>'
+  );
+
+const withFallback = (url) => (url ? url : logoFallback);
+
 const showToast = (message) => {
   const toast = document.getElementById('toast');
   if (!toast) {
@@ -358,6 +369,9 @@ const renderFeaturedRaces = (races) => {
     .map(
       (race) => `
       <article class="card">
+        <div class="media-frame">
+          <img src="${withFallback(race.imageUrl)}" alt="${race.name}" loading="lazy" />
+        </div>
         <div>
           <h3>${race.name}</h3>
           <p>${race.location}</p>
@@ -532,6 +546,9 @@ const renderHorseCards = (horses) => {
     .map(
       (horse) => `
       <article class="profile-card">
+        <div class="media-frame">
+          <img src="${withFallback(horse.imageUrl)}" alt="${horse.name}" loading="lazy" />
+        </div>
         <div class="profile-header">
           <div>
             <h3>${horse.name}</h3>
@@ -559,6 +576,9 @@ const renderJockeyCards = (jockeys) => {
     .map(
       (jockey) => `
       <article class="profile-card">
+        <div class="media-frame">
+          <img src="${withFallback(jockey.imageUrl)}" alt="${jockey.name}" loading="lazy" />
+        </div>
         <div class="profile-header">
           <div>
             <h3>${jockey.name}</h3>
@@ -587,6 +607,9 @@ const renderHallCards = (horses) => {
     .map(
       (horse) => `
       <article class="profile-card">
+        <div class="media-frame">
+          <img src="${withFallback(horse.imageUrl)}" alt="${horse.name}" loading="lazy" />
+        </div>
         <div class="profile-header">
           <div>
             <h3>${horse.name}</h3>
