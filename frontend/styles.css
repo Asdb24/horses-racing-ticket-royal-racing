@@ -79,13 +79,18 @@ nav .dropdown-menu {
   gap: 6px;
 }
 
-nav .dropdown-menu a {
+nav .dropdown-menu a,
+nav .dropdown-menu button {
   color: var(--ink);
   padding: 8px 10px;
   border-radius: 6px;
+  border: none;
+  background: transparent;
+  text-align: left;
 }
 
-nav .dropdown-menu a:hover {
+nav .dropdown-menu a:hover,
+nav .dropdown-menu button:hover {
   background: var(--cream);
 }
 

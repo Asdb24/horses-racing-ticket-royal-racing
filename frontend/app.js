@@ -349,7 +349,7 @@ const formatCountdown = (startsAt) => {
   return `${hours}:${minutes}:${seconds}`;
 };
 
-const Header = ({ lang, setLang, tickets, accountName }) => {
+const Header = ({ lang, setLang, tickets, accountName, currentPage, onNavigate }) => {
   const [showWiki, setShowWiki] = useState(false);
   const text = translations[lang];
   return (
@@ -359,8 +359,8 @@ const Header = ({ lang, setLang, tickets, accountName }) => {
         <span>Royal Racing</span>
       </div>
       <nav>
-        <a href="#home">{text.home}</a>
-        <a href="#races">{text.races}</a>
+        <button type="button" onClick={() => onNavigate("home")}>{text.home}</button>
+        <button type="button" onClick={() => onNavigate("races")}>{text.races}</button>
         <div
           className="dropdown"
           onMouseEnter={() => setShowWiki(true)}
@@ -369,9 +369,15 @@ const Header = ({ lang, setLang, tickets, accountName }) => {
           <button type="button">{text.wiki}</button>
           {showWiki && (
             <div className="dropdown-menu">
-              <a href="#horses">{text.horses}</a>
-              <a href="#jockeys">{text.jockeys}</a>
-              <a href="#hall">{text.hallOfFame}</a>
+              <button type="button" onClick={() => onNavigate("horses")}>
+                {text.horses}
+              </button>
+              <button type="button" onClick={() => onNavigate("jockeys")}>
+                {text.jockeys}
+              </button>
+              <button type="button" onClick={() => onNavigate("hall")}>
+                {text.hallOfFame}
+              </button>
             </div>
           )}
         </div>
@@ -585,6 +591,7 @@ const App = () => {
   const [modalRace, setModalRace] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [following, setFollowing] = useState([]);
+  const [currentPage, setCurrentPage] = useState("home");
   const text = translations[lang];
 
   const handleBuy = (race) => {
@@ -617,61 +624,86 @@ const App = () => {
         setLang={setLang}
         tickets={tickets}
         accountName={accountName}
+        currentPage={currentPage}
+        onNavigate={setCurrentPage}
       />
       <main>
-        <section className="hero" id="home">
-          <h1>{text.heroTitle}</h1>
-          <h2>{text.heroSubtitle}</h2>
-          <p>{text.heroDescription}</p>
-        </section>
+        {currentPage === "home" && (
+          <>
+            <section className="hero" id="home">
+              <h1>{text.heroTitle}</h1>
+              <h2>{text.heroSubtitle}</h2>
+              <p>{text.heroDescription}</p>
+            </section>
 
-        <section className="section">
-          <h2>{text.featureRaces}</h2>
-          <div className="cards">
-            {featureRaces.map((race) => (
-              <FeatureRaceCard
-                key={race.id}
-                race={race}
-                onBuy={handleBuy}
-                lang={lang}
-              />
-            ))}
-          </div>
-        </section>
+            <section className="section">
+              <h2>{text.featureRaces}</h2>
+              <div className="cards">
+                {featureRaces.map((race) => (
+                  <FeatureRaceCard
+                    key={race.id}
+                    race={race}
+                    onBuy={handleBuy}
+                    lang={lang}
+                  />
+                ))}
+              </div>
+            </section>
+          </>
+        )}
 
-        <RacesSchedule lang={lang} />
+        {currentPage === "races" && <RacesSchedule lang={lang} />}
 
-        <section className="section" id="wiki">
-          <h2>{text.wikiTitle}</h2>
-          <p>{text.wikiSubtitle}</p>
-        </section>
+        {currentPage === "horses" && (
+          <>
+            <section className="section" id="wiki">
+              <h2>{text.wikiTitle}</h2>
+              <p>{text.wikiSubtitle}</p>
+            </section>
+            <WikiSection
+              title={text.horses}
+              items={horses.filter((horse) => horse.status === "Active")}
+              type="horses"
+              lang={lang}
+              onFollow={handleFollow}
+              following={following}
+            />
+          </>
+        )}
 
-        <WikiSection
-          title={text.horses}
-          items={horses}
-          type="horses"
-          lang={lang}
-          onFollow={handleFollow}
-          following={following}
-        />
+        {currentPage === "jockeys" && (
+          <>
+            <section className="section" id="wiki">
+              <h2>{text.wikiTitle}</h2>
+              <p>{text.wikiSubtitle}</p>
+            </section>
+            <WikiSection
+              title={text.jockeys}
+              items={jockeys.filter((jockey) => jockey.status === "Active")}
+              type="jockeys"
+              lang={lang}
+              onFollow={handleFollow}
+              following={following}
+            />
+          </>
+        )}
 
-        <WikiSection
-          title={text.jockeys}
-          items={jockeys}
-          type="jockeys"
-          lang={lang}
-          onFollow={handleFollow}
-          following={following}
-        />
-
-        <WikiSection
-          title={text.hallOfFame}
-          items={hallOfFame}
-          type="hall"
-          lang={lang}
-          onFollow={handleFollow}
-          following={following}
-        />
+        {currentPage === "hall" && (
+          <>
+            <section className="section" id="wiki">
+              <h2>{text.wikiTitle}</h2>
+              <p>{text.wikiSubtitle}</p>
+            </section>
+            <WikiSection
+              title={text.hallOfFame}
+              items={hallOfFame}
+              type="hall"
+              lang={lang}
+              onFollow={handleFollow}
+              following={following}
+            />
+          </>
+        )}
 
         <section className="section">
           <h2>{text.notifications}</h2>
