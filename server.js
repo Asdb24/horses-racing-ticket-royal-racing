@@ -59,7 +59,8 @@ const featuredRaces = [
     distance: '1 3/16 miles',
     horses: 14,
     seatsRemaining: 200,
-    priceUSD: 135
+    priceUSD: 135,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Pimlico_Race_Course_2019.jpg'
   },
   {
     id: 'japan-cup',
@@ -91,7 +92,8 @@ const featuredRaces = [
     distance: '1.5 miles',
     horses: 12,
     seatsRemaining: 170,
-    priceUSD: 130
+    priceUSD: 130,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Belmont_Park_2021.jpg'
   },
   {
     id: 'tenno-sho-autumn',
@@ -112,7 +114,8 @@ const featuredRaces = [
     distance: '3 miles 2½ furlongs',
     horses: 14,
     seatsRemaining: 180,
-    priceUSD: 145
+    priceUSD: 145,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Cheltenham_Racecourse_2007.jpg'
   },
   {
     id: 'grand-national',
@@ -122,7 +125,8 @@ const featuredRaces = [
     distance: '4 miles 2½ furlongs',
     horses: 40,
     seatsRemaining: 320,
-    priceUSD: 165
+    priceUSD: 165,
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/34/Aintree_Racecourse_2018.jpg'
   },
   {
     id: 'nhk-mile-cup',
@@ -300,7 +304,8 @@ const horses = [
     foaled: '2012-03-10',
     started: 2014,
     record: '20 starts • 12 wins',
-    titles: 'Japan Cup (2016), Arima Kinen (2016)'
+    titles: 'Japan Cup (2016), Arima Kinen (2016)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Kitasan_Black_2016_Japan_Cup.jpg'
   },
   {
     name: 'Contrail',
@@ -309,7 +314,8 @@ const horses = [
     foaled: '2017-04-01',
     started: 2019,
     record: '11 starts • 8 wins',
-    titles: 'Japanese Triple Crown (2020)'
+    titles: 'Japanese Triple Crown (2020)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Contrail_2020.jpg'
   },
   {
     name: 'Almond Eye',
@@ -318,7 +324,8 @@ const horses = [
     foaled: '2015-03-10',
     started: 2017,
     record: '15 starts • 11 wins',
-    titles: 'Japan Cup (2018, 2020)'
+    titles: 'Japan Cup (2018, 2020)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Almond_Eye_2019_Japan_Cup.jpg'
   },
   {
     name: 'Efforia',
@@ -345,7 +352,8 @@ const horses = [
     foaled: '2020-02-02',
     started: 2022,
     record: '9 starts • 7 wins',
-    titles: 'Japanese Filly Triple Crown (2023)'
+    titles: 'Japanese Filly Triple Crown (2023)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1c/Liberty_Island_2023.jpg'
   },
   {
     name: 'Do Deuce',
@@ -354,7 +362,8 @@ const horses = [
     foaled: '2019-05-07',
     started: 2021,
     record: '14 starts • 6 wins',
-    titles: 'Tokyo Yushun (2022)'
+    titles: 'Tokyo Yushun (2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7e/Do_Deuce_2022.jpg'
   },
   {
     name: 'Stars on Earth',
@@ -372,7 +381,8 @@ const horses = [
     foaled: '2018-03-08',
     started: 2020,
     record: '16 starts • 8 wins',
-    titles: 'Oka Sho (2021)'
+    titles: 'Oka Sho (2021)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Sodashi_2021.jpg'
   },
   {
     name: 'Titleholder',
@@ -381,7 +391,8 @@ const horses = [
     foaled: '2018-02-10',
     started: 2020,
     record: '18 starts • 7 wins',
-    titles: 'Tenno Sho (Spring) (2022)'
+    titles: 'Tenno Sho (Spring) (2022)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Titleholder_2022.jpg'
   },
   {
     name: 'Shahryar',
@@ -390,7 +401,8 @@ const horses = [
     foaled: '2018-02-05',
     started: 2020,
     record: '15 starts • 5 wins',
-    titles: 'Tokyo Yushun (2021)'
+    titles: 'Tokyo Yushun (2021)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/06/Shahryar_2021.jpg'
   },
   {
     name: 'Geoglyph',
@@ -417,7 +429,8 @@ const horses = [
     foaled: '2017-04-18',
     started: 2019,
     record: '12 starts • 5 wins',
-    titles: 'Japanese Filly Triple Crown (2020)'
+    titles: 'Japanese Filly Triple Crown (2020)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Daring_Tact_2020.jpg'
   },
   {
     name: 'Chrono Genesis',
@@ -426,7 +439,8 @@ const horses = [
     foaled: '2016-03-06',
     started: 2018,
     record: '17 starts • 8 wins',
-    titles: 'Arima Kinen (2019, 2020)'
+    titles: 'Arima Kinen (2019, 2020)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Chrono_Genesis_2019.jpg'
   },
   {
     name: 'Loves Only You',
@@ -435,7 +449,8 @@ const horses = [
     foaled: '2016-03-26',
     started: 2018,
     record: '15 starts • 7 wins',
-    titles: 'Breeders\' Cup Filly & Mare Turf (2021)'
+    titles: 'Breeders\' Cup Filly & Mare Turf (2021)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Loves_Only_You_2021.jpg'
   },
   {
     name: 'Gran Alegria',
@@ -444,7 +459,8 @@ const horses = [
     foaled: '2016-01-24',
     started: 2018,
     record: '16 starts • 9 wins',
-    titles: 'Yasuda Kinen (2020, 2021)'
+    titles: 'Yasuda Kinen (2020, 2021)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/90/Gran_Alegria_2021.jpg'
   },
   {
     name: 'Flightline',
@@ -648,7 +664,8 @@ const hallOfFame = [
     record: '16 starts • 13 wins',
     titles: 'Japanese Triple Crown (1984)',
     retired: '1985',
-    memorial: '—'
+    memorial: '—',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/23/Symboli_Rudolf_1984.jpg'
   },
   {
     name: 'Tokai Teio',
@@ -659,7 +676,8 @@ const hallOfFame = [
     record: '12 starts • 9 wins',
     titles: 'Japan Cup (1992)',
     retired: '1993',
-    memorial: '—'
+    memorial: '—',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Tokai_Teio_1992.jpg'
   },
   {
     name: 'Mejiro McQueen',
@@ -670,7 +688,8 @@ const hallOfFame = [
     record: '21 starts • 12 wins',
     titles: 'Tenno Sho (Spring) (1991, 1992)',
     retired: '1992',
-    memorial: '—'
+    memorial: '—',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/14/Mejiro_McQueen_1991.jpg'
   },
   {
     name: 'Narita Brian',
@@ -824,7 +843,8 @@ const jockeys = [
     status: 'Active',
     started: 2004,
     wins: 'Over 1,800 wins',
-    awards: 'JRA Best Jockey (2016, 2020)'
+    awards: 'JRA Best Jockey (2016, 2020)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Yuga_Kawada_2018.jpg'
   },
   {
     name: 'Yuichi Fukunaga',
@@ -860,7 +880,8 @@ const jockeys = [
     status: 'Active',
     started: 1998,
     wins: 'Over 1,200 wins',
-    awards: 'Japanese Derby, Arima Kinen'
+    awards: 'Japanese Derby, Arima Kinen',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2a/Mirco_Demuro_2018.jpg'
   },
   {
     name: 'Keita Tosaki',
@@ -869,7 +890,8 @@ const jockeys = [
     status: 'Active',
     started: 1998,
     wins: 'Over 1,300 wins',
-    awards: 'JRA Best Jockey (2014, 2016)'
+    awards: 'JRA Best Jockey (2014, 2016)',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Keita_Tosaki_2017.jpg'
   },
   {
     name: 'Kohei Matsuyama',
