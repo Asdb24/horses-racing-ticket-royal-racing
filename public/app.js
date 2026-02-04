@@ -334,6 +334,14 @@ const logoFallback =
 
 const withFallback = (url) => (url ? url : logoFallback);
 
+const applyImageFallbacks = () => {
+  document.querySelectorAll('img[data-fallback="logo"]').forEach((img) => {
+    img.onerror = () => {
+      img.src = logoFallback;
+    };
+  });
+};
+
 const showToast = (message) => {
   const toast = document.getElementById('toast');
   if (!toast) {
@@ -370,7 +378,7 @@ const renderFeaturedRaces = (races) => {
       (race) => `
       <article class="card">
         <div class="media-frame">
-          <img src="${withFallback(race.imageUrl)}" alt="${race.name}" loading="lazy" />
+          <img src="${withFallback(race.imageUrl)}" alt="${race.name}" loading="lazy" data-fallback="logo" />
         </div>
         <div>
           <h3>${race.name}</h3>
@@ -388,6 +396,7 @@ const renderFeaturedRaces = (races) => {
     `
     )
     .join('');
+  applyImageFallbacks();
 };
 
 const updateCountdowns = () => {
@@ -547,7 +556,7 @@ const renderHorseCards = (horses) => {
       (horse) => `
       <article class="profile-card">
         <div class="media-frame">
-          <img src="${withFallback(horse.imageUrl)}" alt="${horse.name}" loading="lazy" />
+          <img src="${withFallback(horse.imageUrl)}" alt="${horse.name}" loading="lazy" data-fallback="logo" />
         </div>
         <div class="profile-header">
           <div>
@@ -564,6 +573,7 @@ const renderHorseCards = (horses) => {
     `
     )
     .join('');
+  applyImageFallbacks();
 };
 
 const renderJockeyCards = (jockeys) => {
@@ -577,7 +587,7 @@ const renderJockeyCards = (jockeys) => {
       (jockey) => `
       <article class="profile-card">
         <div class="media-frame">
-          <img src="${withFallback(jockey.imageUrl)}" alt="${jockey.name}" loading="lazy" />
+          <img src="${withFallback(jockey.imageUrl)}" alt="${jockey.name}" loading="lazy" data-fallback="logo" />
         </div>
         <div class="profile-header">
           <div>
@@ -595,6 +605,7 @@ const renderJockeyCards = (jockeys) => {
     `
     )
     .join('');
+  applyImageFallbacks();
 };
 
 const renderHallCards = (horses) => {
@@ -608,7 +619,7 @@ const renderHallCards = (horses) => {
       (horse) => `
       <article class="profile-card">
         <div class="media-frame">
-          <img src="${withFallback(horse.imageUrl)}" alt="${horse.name}" loading="lazy" />
+          <img src="${withFallback(horse.imageUrl)}" alt="${horse.name}" loading="lazy" data-fallback="logo" />
         </div>
         <div class="profile-header">
           <div>
@@ -626,6 +637,7 @@ const renderHallCards = (horses) => {
     `
     )
     .join('');
+  applyImageFallbacks();
 };
 
 const fetchFeaturedRaces = async () => {
