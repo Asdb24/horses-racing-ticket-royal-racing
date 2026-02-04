@@ -25,6 +25,19 @@ const translations = {
       title: 'News & Insights',
       subtitle: 'Official updates from iconic venues worldwide.'
     },
+    home: {
+      featuredTitle: 'Featured Race',
+      featuredSubtitle: "Don't miss the biggest event of the season.",
+      viewAll: 'View all races',
+      whyTitle: 'Why Choose Royal Racing',
+      whySubtitle: 'Experience world-class horse racing with premium amenities and unmatched service.',
+      benefit1Title: 'Premium Experience',
+      benefit1Body: 'VIP lounges, gourmet dining, and exclusive access to paddock areas.',
+      benefit2Title: 'Secure Booking',
+      benefit2Body: 'Time-limited holds on your tickets while you complete payment securely.',
+      benefit3Title: 'Expert Insights',
+      benefit3Body: 'Detailed horse statistics, jockey profiles, and race analysis.'
+    },
     races: {
       eyebrow: 'Upcoming Tickets',
       title: 'Races currently selling tickets',
@@ -88,6 +101,8 @@ const translations = {
       buyTicket: 'Buy ticket',
       bookTier: 'Book',
       nextRaceStarts: 'Next Race Starts In',
+      schedule: 'Schedule',
+      startsOn: 'Starts on',
       days: 'Days',
       hours: 'Hours',
       mins: 'Mins',
@@ -137,6 +152,19 @@ const translations = {
     news: {
       title: 'ニュースとインサイト',
       subtitle: '世界の名門競馬場からの公式アップデート。'
+    },
+    home: {
+      featuredTitle: '注目レース',
+      featuredSubtitle: '今シーズン最大のイベントをお見逃しなく。',
+      viewAll: '全レースを見る',
+      whyTitle: 'ロイヤルレーシングが選ばれる理由',
+      whySubtitle: 'プレミアムな設備と比類なきサービスで世界最高峰の競馬体験を提供します。',
+      benefit1Title: 'プレミアム体験',
+      benefit1Body: 'VIPラウンジ、グルメダイニング、パドックへの特別アクセス。',
+      benefit2Title: '安全な予約',
+      benefit2Body: '決済完了までチケットを確保できる安全な予約システム。',
+      benefit3Title: '専門的な分析',
+      benefit3Body: '詳細な競走馬データとジョッキーの分析情報。'
     },
     races: {
       eyebrow: '販売中チケット',
@@ -201,6 +229,8 @@ const translations = {
       buyTicket: 'チケット購入',
       bookTier: '予約',
       nextRaceStarts: '次のレース開始まで',
+      schedule: '日程',
+      startsOn: '開催日',
       days: '日',
       hours: '時間',
       mins: '分',
@@ -250,6 +280,19 @@ const translations = {
     news: {
       title: 'Tin tức & Góc nhìn',
       subtitle: 'Cập nhật chính thức từ các trường đua danh tiếng.'
+    },
+    home: {
+      featuredTitle: 'Chặng đua nổi bật',
+      featuredSubtitle: 'Đừng bỏ lỡ sự kiện lớn nhất của mùa giải.',
+      viewAll: 'Xem tất cả chặng đua',
+      whyTitle: 'Vì sao chọn Royal Racing',
+      whySubtitle: 'Trải nghiệm đua ngựa đẳng cấp với tiện ích cao cấp và dịch vụ vượt trội.',
+      benefit1Title: 'Trải nghiệm cao cấp',
+      benefit1Body: 'Phòng VIP, ẩm thực thượng hạng và quyền vào paddock.',
+      benefit2Title: 'Đặt vé an toàn',
+      benefit2Body: 'Giữ chỗ tạm thời trong khi hoàn tất thanh toán an toàn.',
+      benefit3Title: 'Góc nhìn chuyên gia',
+      benefit3Body: 'Thống kê ngựa đua, nài ngựa và phân tích chặng đua.'
     },
     races: {
       eyebrow: 'Vé đang mở bán',
@@ -314,6 +357,8 @@ const translations = {
       buyTicket: 'Mua vé',
       bookTier: 'Đặt',
       nextRaceStarts: 'Chặng đua tiếp theo bắt đầu sau',
+      schedule: 'Lịch thi đấu',
+      startsOn: 'Ngày khởi tranh',
       days: 'Ngày',
       hours: 'Giờ',
       mins: 'Phút',
@@ -386,6 +431,27 @@ const logoFallback =
   );
 
 const withFallback = (url) => (url ? url : logoFallback);
+
+const localeMap = {
+  en: 'en-US',
+  ja: 'ja-JP',
+  vi: 'vi-VN'
+};
+
+const formatRaceDate = (dateString) => {
+  const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) {
+    return dateString;
+  }
+  const locale = localeMap[getLanguage()] || 'en-US';
+  return new Intl.DateTimeFormat(locale, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit'
+  }).format(date);
+};
 
 const applyImageFallbacks = () => {
   document.querySelectorAll('img[data-fallback="logo"]').forEach((img) => {
@@ -487,7 +553,14 @@ const renderFeaturedRaces = (races) => {
   container.innerHTML = races
     .map(
       (race) => `
-      <article class="card">
+      <article class="card race-card">
+        <div class="card-top">
+          <span class="schedule-tag">${t('labels.schedule')}</span>
+          <span class="schedule-date">
+            <span class="schedule-label">${t('labels.startsOn')}</span>
+            ${formatRaceDate(race.date)}
+          </span>
+        </div>
         <div class="media-frame">
           <img src="${withFallback(race.imageUrl)}" alt="${race.name}" loading="lazy" data-fallback="logo" />
         </div>
@@ -788,12 +861,13 @@ const fetchFeaturedRaces = async () => {
   const response = await fetch('/api/featured-races');
   const data = await response.json();
   renderFeaturedRaces(data);
-  const upcoming = [...data]
+  const sortedByDate = [...data]
     .map((race) => ({ ...race, dateObj: new Date(race.date) }))
-    .filter((race) => race.dateObj > new Date())
     .sort((a, b) => a.dateObj - b.dateObj);
-  if (upcoming.length > 0) {
-    renderNextRacePanel(upcoming[0]);
+  const now = new Date();
+  const nextRace = sortedByDate.find((race) => race.dateObj >= now) || sortedByDate[0];
+  if (nextRace) {
+    renderNextRacePanel(nextRace);
   }
   updateCountdowns();
 };
