@@ -3,6 +3,7 @@
   --almond: #f3e7d6;
   --dark-brown: #4b2f1d;
   --light-brown: #7b5133;
+  --gold: #d7a648;
   --shadow: 0 20px 40px rgba(75, 47, 29, 0.12);
 }
 
@@ -17,6 +18,13 @@ body {
   background: var(--white);
   color: var(--dark-brown);
   line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: -0.02em;
 }
 
 .site-header {
@@ -66,11 +74,25 @@ body {
   gap: 12px;
 }
 
-.language-select select {
-  padding: 8px 14px;
-  border-radius: 999px;
+.language-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   border: 1px solid rgba(75, 47, 29, 0.2);
+  border-radius: 999px;
+  padding: 6px 12px;
   background: var(--white);
+}
+
+.language-select select {
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+.globe {
+  font-size: 0.9rem;
 }
 
 .primary-button,
@@ -87,12 +109,20 @@ body {
   background: var(--dark-brown);
   color: var(--white);
   box-shadow: var(--shadow);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ghost-button {
   background: transparent;
   color: var(--dark-brown);
   border: 1px solid rgba(75, 47, 29, 0.25);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .primary-button:hover,
@@ -115,13 +145,23 @@ main {
   overflow: hidden;
 }
 
+.hero-home {
+  text-align: center;
+  justify-items: center;
+}
+
+.hero-home .hero-content {
+  max-width: 720px;
+}
+
 .hero-content h1 {
-  font-size: clamp(2.2rem, 3vw, 3.2rem);
-  margin: 12px 0 16px;
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  margin: 18px 0 16px;
 }
 
 .hero-content p {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  color: rgba(75, 47, 29, 0.8);
 }
 
 .hero::before {
@@ -129,25 +169,52 @@ main {
   position: absolute;
   inset: 0;
   background-image: linear-gradient(
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0.9)
+      rgba(255, 255, 255, 0.88),
+      rgba(255, 255, 255, 0.94)
     ),
-    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80');
+    url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=80');
   background-size: cover;
   background-position: center;
-  filter: blur(2px);
-  opacity: 0.7;
+  filter: blur(3px);
+  opacity: 0.75;
   z-index: 0;
 }
 
 .hero-content,
+.countdown-card,
 .hero-card {
   position: relative;
   z-index: 1;
 }
 
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--gold);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .page-hero {
   padding: 70px 0 30px;
+}
+
+.hall-hero {
+  background: linear-gradient(rgba(75, 47, 29, 0.65), rgba(75, 47, 29, 0.7)),
+    url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80')
+      center/cover;
+  color: var(--white);
+  border-radius: 24px;
+  padding: 80px 40px;
+}
+
+.hall-hero .section-header p,
+.hall-hero .section-header h1 {
+  color: var(--white);
 }
 
 .eyebrow {
@@ -155,18 +222,6 @@ main {
   text-transform: uppercase;
   font-size: 0.75rem;
   font-weight: 600;
-}
-
-.hero-card {
-  background: var(--almond);
-  padding: 32px;
-  border-radius: 24px;
-  box-shadow: var(--shadow);
-}
-
-.hero-card ul {
-  margin-top: 16px;
-  padding-left: 18px;
 }
 
 .section {
@@ -180,7 +235,7 @@ main {
 }
 
 .section-header {
-  max-width: 620px;
+  max-width: 680px;
   margin-bottom: 32px;
 }
 
@@ -214,6 +269,7 @@ main {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
+  gap: 12px;
 }
 
 .card .countdown {
@@ -265,25 +321,67 @@ main {
   background: var(--white);
 }
 
-.countdown-panel {
-  background: var(--almond);
+.countdown-card {
+  background: rgba(255, 255, 255, 0.96);
   border-radius: 24px;
-  padding: 28px;
-  display: grid;
-  gap: 16px;
+  padding: 28px 32px;
   box-shadow: var(--shadow);
-  border: 1px solid rgba(75, 47, 29, 0.2);
+  border: 1px solid rgba(75, 47, 29, 0.15);
+  width: min(560px, 100%);
+  text-align: center;
 }
 
-.countdown-panel h3 {
-  font-size: 1.5rem;
+.countdown-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
 }
 
-.countdown-metrics {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+.countdown-label {
   font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(75, 47, 29, 0.6);
+  margin-bottom: 14px;
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.countdown-box {
+  background: #fff;
+  border: 1px solid rgba(75, 47, 29, 0.12);
+  border-radius: 16px;
+  padding: 14px 8px;
+}
+
+.countdown-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+}
+
+.countdown-unit {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(75, 47, 29, 0.6);
+}
+
+.countdown-divider {
+  height: 1px;
+  background: rgba(75, 47, 29, 0.1);
+  margin: 18px 0;
+}
+
+.countdown-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  color: rgba(75, 47, 29, 0.75);
 }
 
 .wiki-grid {
@@ -307,6 +405,46 @@ main {
   transform: translateY(-4px);
 }
 
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.profile-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 24px 26px;
+  border: 1px solid rgba(75, 47, 29, 0.15);
+  box-shadow: var(--shadow);
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.profile-header p {
+  color: rgba(75, 47, 29, 0.7);
+}
+
+.profile-tag {
+  background: rgba(215, 166, 72, 0.15);
+  color: var(--dark-brown);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  height: fit-content;
+}
+
+.profile-body p {
+  margin-bottom: 10px;
+}
+
 .data-table {
   border: 1px solid rgba(75, 47, 29, 0.2);
   border-radius: 20px;
@@ -320,7 +458,7 @@ main {
 
 .data-table th,
 .data-table td {
-  padding: 14px 16px;
+  padding: 16px 18px;
   border-bottom: 1px solid rgba(75, 47, 29, 0.12);
   text-align: left;
   font-size: 0.95rem;

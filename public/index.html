@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Royal Racing | Ticketing</title>
+    <title>Royal Racing | Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -19,69 +19,55 @@
         <span class="logo-text">Royal Racing</span>
       </div>
       <nav class="site-nav">
-        <a href="index.html">Home</a>
-        <a href="races.html">Races</a>
-        <a href="horses.html">Horses</a>
-        <a href="jockeys.html">Jockeys</a>
-        <a href="hall-of-fame.html">Hall of Fame</a>
-        <a href="wiki.html">Wiki</a>
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="races.html" data-i18n="nav.races">All Races</a>
+        <a href="horses.html" data-i18n="nav.horses">Horses</a>
+        <a href="jockeys.html" data-i18n="nav.jockeys">Jockeys</a>
+        <a href="hall-of-fame.html" data-i18n="nav.hall">Hall of Fame</a>
+        <a href="wiki.html" data-i18n="nav.wiki">Wiki</a>
       </nav>
       <div class="header-tools">
         <label class="language-select" aria-label="Select language">
-          <select>
-            <option>English</option>
-            <option>日本語</option>
-            <option>Tiếng Việt</option>
+          <span class="globe" aria-hidden="true">🌐</span>
+          <select class="js-language">
+            <option value="en">EN</option>
+            <option value="ja">日本語</option>
+            <option value="vi">Tiếng Việt</option>
           </select>
         </label>
-        <button class="ghost-button">My Tickets (3)</button>
-        <button class="primary-button">Sign in</button>
+        <button class="ghost-button" data-i18n="header.tickets">My Tickets (3)</button>
+        <button class="primary-button" data-i18n="header.signin">Sign in</button>
       </div>
     </header>
 
     <main>
-      <section id="home" class="hero">
+      <section id="home" class="hero hero-home">
         <div class="hero-content">
-          <p class="eyebrow">Royal Racing • Trusted Ticketing Network</p>
-          <h1>Secure, transparent, and premium access to the world’s finest races.</h1>
-          <p>
-            We combine verified race data with real-time inventory controls so every ticket purchase is
-            protected, traceable, and backed by official venue policies in the USA, Japan, and the UK.
+          <span class="hero-badge" data-i18n="hero.badge">Premium Racing Experience</span>
+          <h1 data-i18n="hero.title">Experience the Thrill of Championship Racing</h1>
+          <p data-i18n="hero.subtitle">
+            Book your tickets to the most prestigious horse racing events. Witness world-class
+            thoroughbreds compete for glory.
           </p>
           <div class="hero-actions">
-            <a class="primary-button" href="races.html">Explore featured races</a>
-            <a class="ghost-button" href="races.html#ticket-tiers">View ticket tiers</a>
+            <a class="primary-button" href="races.html" data-i18n="hero.ctaPrimary">Explore races</a>
+            <a class="ghost-button" href="races.html#ticket-tiers" data-i18n="hero.ctaSecondary">View ticket tiers</a>
           </div>
         </div>
-        <div class="hero-card">
-          <h2>Ticketing Integrity</h2>
-          <ul>
-            <li>Blockchain-grade audit trail for every seat allocation.</li>
-            <li>Verified race schedules with trusted official sources.</li>
-            <li>Live countdowns and availability synced with venue capacity.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="next-race" class="section">
-        <div class="section-header">
-          <h2>Next Race Countdown</h2>
-          <p>Live timing for the nearest upcoming event with open ticket sales.</p>
-        </div>
-        <div class="countdown-panel" id="next-race-panel"></div>
+        <div class="countdown-card" id="next-race-panel"></div>
       </section>
 
       <section class="section" id="news">
         <div class="section-header">
-          <h2>News &amp; Insights</h2>
-          <p>Official updates from iconic venues worldwide.</p>
+          <h2 data-i18n="news.title">News &amp; Insights</h2>
+          <p data-i18n="news.subtitle">Official updates from iconic venues worldwide.</p>
         </div>
         <div class="news-grid" id="news-grid"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>© 2025 Royal Racing. Built for verified racing fans worldwide.</p>
+      <p data-i18n="footer.copy">© 2025 Royal Racing. Built for verified racing fans worldwide.</p>
     </footer>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
