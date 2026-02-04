@@ -35,8 +35,9 @@
             <option value="vi">Tiếng Việt</option>
           </select>
         </label>
-        <button class="ghost-button" data-i18n="header.tickets">My Tickets (3)</button>
-        <button class="primary-button" data-i18n="header.signin">Sign in</button>
+        <button class="ghost-button" data-action="tickets" data-i18n="header.tickets">My Tickets (0)</button>
+        <button class="ghost-button" data-action="login" data-i18n="header.login">Login</button>
+        <button class="primary-button" data-action="signup" data-i18n="header.signup">Sign up</button>
       </div>
     </header>
 
@@ -58,6 +59,59 @@
       <p data-i18n="footer.copy">© 2025 Royal Racing. Built for verified racing fans worldwide.</p>
     </footer>
 
+    <div class="modal" id="tickets-modal" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 data-i18n="tickets.title">My Tickets</h3>
+          <button class="icon-button" data-close="tickets-modal">✕</button>
+        </div>
+        <div class="modal-body" id="tickets-list"></div>
+      </div>
+    </div>
+
+    <div class="modal" id="login-modal" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 data-i18n="auth.loginTitle">Login</h3>
+          <button class="icon-button" data-close="login-modal">✕</button>
+        </div>
+        <form class="modal-body form-grid" id="login-form">
+          <label>
+            <span data-i18n="auth.userLabel">Username or email</span>
+            <input type="text" name="identifier" required />
+          </label>
+          <label>
+            <span data-i18n="auth.passwordLabel">Password</span>
+            <input type="password" name="password" required />
+          </label>
+          <button class="primary-button" type="submit" data-i18n="auth.loginButton">Login</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="signup-modal" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 data-i18n="auth.signupTitle">Sign up</h3>
+          <button class="icon-button" data-close="signup-modal">✕</button>
+        </div>
+        <form class="modal-body form-grid" id="signup-form">
+          <label>
+            <span data-i18n="auth.emailLabel">Email or username</span>
+            <input type="text" name="email" required />
+          </label>
+          <label>
+            <span data-i18n="auth.phoneLabel">Phone number</span>
+            <input type="tel" name="phone" required />
+          </label>
+          <label>
+            <span data-i18n="auth.passwordLabel">Password</span>
+            <input type="password" name="password" required />
+          </label>
+          <button class="primary-button" type="submit" data-i18n="auth.signupButton">Create account</button>
+        </form>
+      </div>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>

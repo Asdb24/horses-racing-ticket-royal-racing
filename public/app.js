@@ -9,8 +9,9 @@ const translations = {
       wiki: 'Wiki'
     },
     header: {
-      tickets: 'My Tickets (3)',
-      signin: 'Sign in'
+      tickets: 'My Tickets',
+      login: 'Login',
+      signup: 'Sign up'
     },
     hero: {
       badge: 'Premium Racing Experience',
@@ -64,6 +65,22 @@ const translations = {
     footer: {
       copy: '© 2025 Royal Racing. Built for verified racing fans worldwide.'
     },
+    tickets: {
+      title: 'My Tickets',
+      empty: 'No tickets purchased yet.'
+    },
+    auth: {
+      loginTitle: 'Login',
+      signupTitle: 'Sign up',
+      userLabel: 'Username or email',
+      emailLabel: 'Email or username',
+      phoneLabel: 'Phone number',
+      passwordLabel: 'Password',
+      loginButton: 'Login',
+      signupButton: 'Create account',
+      loginSuccess: 'Logged in successfully.',
+      signupSuccess: 'Account created successfully.'
+    },
     labels: {
       countdown: 'Countdown',
       seatsLeft: 'Seats left',
@@ -106,8 +123,9 @@ const translations = {
       wiki: 'ウィキ'
     },
     header: {
-      tickets: 'チケット (3)',
-      signin: 'ログイン'
+      tickets: 'チケット',
+      login: 'ログイン',
+      signup: '新規登録'
     },
     hero: {
       badge: 'プレミアム体験',
@@ -160,6 +178,22 @@ const translations = {
     footer: {
       copy: '© 2025 Royal Racing. 認証済みレースファンのために。'
     },
+    tickets: {
+      title: 'チケット一覧',
+      empty: '購入済みチケットはありません。'
+    },
+    auth: {
+      loginTitle: 'ログイン',
+      signupTitle: '新規登録',
+      userLabel: 'ユーザー名またはメール',
+      emailLabel: 'メールまたはユーザー名',
+      phoneLabel: '電話番号',
+      passwordLabel: 'パスワード',
+      loginButton: 'ログイン',
+      signupButton: '登録する',
+      loginSuccess: 'ログインしました。',
+      signupSuccess: 'アカウントを作成しました。'
+    },
     labels: {
       countdown: 'カウントダウン',
       seatsLeft: '残席',
@@ -202,8 +236,9 @@ const translations = {
       wiki: 'Wiki'
     },
     header: {
-      tickets: 'Vé của tôi (3)',
-      signin: 'Đăng nhập'
+      tickets: 'Vé của tôi',
+      login: 'Đăng nhập',
+      signup: 'Đăng ký'
     },
     hero: {
       badge: 'Trải nghiệm đua ngựa cao cấp',
@@ -255,6 +290,22 @@ const translations = {
     },
     footer: {
       copy: '© 2025 Royal Racing. Dành cho người hâm mộ đua ngựa toàn cầu.'
+    },
+    tickets: {
+      title: 'Vé của tôi',
+      empty: 'Chưa có vé nào được mua.'
+    },
+    auth: {
+      loginTitle: 'Đăng nhập',
+      signupTitle: 'Đăng ký',
+      userLabel: 'Tên người dùng hoặc email',
+      emailLabel: 'Email hoặc tên người dùng',
+      phoneLabel: 'Số điện thoại',
+      passwordLabel: 'Mật khẩu',
+      loginButton: 'Đăng nhập',
+      signupButton: 'Tạo tài khoản',
+      loginSuccess: 'Đăng nhập thành công.',
+      signupSuccess: 'Tạo tài khoản thành công.'
     },
     labels: {
       countdown: 'Đếm ngược',
@@ -314,6 +365,8 @@ const setLanguage = (lang) => {
     select.value = lang;
   });
 
+  updateTicketsCount();
+
   return dictionary;
 };
 
@@ -342,6 +395,56 @@ const applyImageFallbacks = () => {
   });
 };
 
+const getTickets = () => JSON.parse(localStorage.getItem('rr-tickets') || '[]');
+
+const saveTickets = (tickets) => {
+  localStorage.setItem('rr-tickets', JSON.stringify(tickets));
+};
+
+const updateTicketsCount = () => {
+  const button = document.querySelector('[data-action="tickets"]');
+  if (!button) return;
+  const count = getTickets().length;
+  const label = t('header.tickets');
+  button.textContent = `${label} (${count})`;
+};
+
+const renderTicketsList = () => {
+  const list = document.getElementById('tickets-list');
+  if (!list) return;
+  const tickets = getTickets();
+  if (tickets.length === 0) {
+    list.innerHTML = `<p>${t('tickets.empty')}</p>`;
+    return;
+  }
+  list.classList.add('tickets-list');
+  list.innerHTML = tickets
+    .map(
+      (ticket) => `
+      <div class="ticket-item">
+        <strong>${ticket.title}</strong>
+        <p>${ticket.detail}</p>
+        <p>$${ticket.price}</p>
+      </div>
+    `
+    )
+    .join('');
+};
+
+const openModal = (id) => {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.add('show');
+  modal.setAttribute('aria-hidden', 'false');
+};
+
+const closeModal = (id) => {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+};
+
 const showToast = (message) => {
   const toast = document.getElementById('toast');
   if (!toast) {
@@ -350,6 +453,14 @@ const showToast = (message) => {
   toast.textContent = message;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 2600);
+};
+
+const addTicket = (ticket) => {
+  const tickets = getTickets();
+  tickets.push(ticket);
+  saveTickets(tickets);
+  updateTicketsCount();
+  renderTicketsList();
 };
 
 const getCountdownParts = (targetDate) => {
@@ -391,12 +502,38 @@ const renderFeaturedRaces = (races) => {
         <p class="countdown" data-date="${race.date}">${t('labels.countdown')}: --</p>
         <p>${t('labels.seatsLeft')}: <strong>${race.seatsRemaining}</strong></p>
         <p class="price">$${race.priceUSD}</p>
-        <button class="primary-button">${t('labels.buyTicket')}</button>
+        <button class="primary-button" data-race-id="${race.id}">${t('labels.buyTicket')}</button>
       </article>
     `
     )
     .join('');
   applyImageFallbacks();
+
+  container.querySelectorAll('button[data-race-id]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const raceId = button.getAttribute('data-race-id');
+      const race = races.find((item) => item.id === raceId);
+      const response = await fetch('/api/purchase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tierId: 'standard', quantity: 1 })
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        showToast(data.message || t('toast.purchaseError'));
+        return;
+      }
+      if (race) {
+        addTicket({
+          title: race.name,
+          detail: `${race.location} • ${race.date}`,
+          price: race.priceUSD
+        });
+      }
+      showToast(t('toast.purchaseOk'));
+      fetchTicketTiers();
+    });
+  });
 };
 
 const updateCountdowns = () => {
@@ -479,7 +616,7 @@ const renderTicketTiers = (tiers) => {
         <span style="background:${tier.color}; color: #fff;">${tier.label}</span>
         <h3>$${tier.priceUSD}</h3>
         <p>${t('labels.seatsLeft')}: <strong>${tier.seatsRemaining}</strong></p>
-        <button class="ghost-button" data-tier="${tier.id}">${t('labels.bookTier')} ${tier.label}</button>
+        <button class="ghost-button" data-tier="${tier.id}" data-tier-name="${tier.label}" data-tier-price="${tier.priceUSD}">${t('labels.bookTier')} ${tier.label}</button>
       </article>
     `
     )
@@ -488,6 +625,8 @@ const renderTicketTiers = (tiers) => {
   container.querySelectorAll('button[data-tier]').forEach((button) => {
     button.addEventListener('click', async () => {
       const tierId = button.getAttribute('data-tier');
+      const tierLabel = button.getAttribute('data-tier-name');
+      const tierPrice = button.getAttribute('data-tier-price');
       const response = await fetch('/api/purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -501,6 +640,11 @@ const renderTicketTiers = (tiers) => {
       }
 
       showToast(t('toast.purchaseOk'));
+      addTicket({
+        title: `${tierLabel} ${t('tiers.title')}`,
+        detail: t('tiers.title'),
+        price: tierPrice || '—'
+      });
       fetchTicketTiers();
     });
   });
@@ -700,12 +844,55 @@ const initLanguage = () => {
   });
 };
 
+const initModals = () => {
+  document.querySelectorAll('[data-action="tickets"]').forEach((button) => {
+    button.addEventListener('click', () => {
+      renderTicketsList();
+      openModal('tickets-modal');
+    });
+  });
+
+  document.querySelectorAll('[data-action="login"]').forEach((button) => {
+    button.addEventListener('click', () => openModal('login-modal'));
+  });
+
+  document.querySelectorAll('[data-action="signup"]').forEach((button) => {
+    button.addEventListener('click', () => openModal('signup-modal'));
+  });
+
+  document.querySelectorAll('[data-close]').forEach((button) => {
+    button.addEventListener('click', () => closeModal(button.getAttribute('data-close')));
+  });
+
+  const loginForm = document.getElementById('login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      showToast(t('auth.loginSuccess'));
+      closeModal('login-modal');
+      loginForm.reset();
+    });
+  }
+
+  const signupForm = document.getElementById('signup-form');
+  if (signupForm) {
+    signupForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      showToast(t('auth.signupSuccess'));
+      closeModal('signup-modal');
+      signupForm.reset();
+    });
+  }
+};
+
 initLanguage();
+initModals();
 fetchFeaturedRaces();
 fetchTicketTiers();
 fetchNews();
 fetchHorses();
 fetchJockeys();
 fetchHallOfFame();
+updateTicketsCount();
 
 setInterval(updateCountdowns, 1000);
