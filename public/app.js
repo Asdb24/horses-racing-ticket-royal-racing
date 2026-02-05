@@ -41,7 +41,7 @@ const translations = {
     races: {
       eyebrow: 'Upcoming Tickets',
       title: 'Races currently selling tickets',
-      subtitle: 'Verified races in the USA, Japan, and the UK with active ticket inventory.',
+      subtitle: 'Verified 2026 race schedules in the USA, Japan, and the UK with active ticket inventory.',
       featuredTitle: 'Featured Races',
       featuredSubtitle: 'Upcoming marquee events with real-time countdowns and official data.'
     },
@@ -52,17 +52,17 @@ const translations = {
     horses: {
       eyebrow: 'Active Racing Horses',
       title: 'Champions competing in prestigious racing events',
-      subtitle: 'Verified records, lineage, and major titles for each horse.'
+      subtitle: 'Verified records, lineage, and major titles for each horse (updated for 2026 season).'
     },
     jockeys: {
       eyebrow: 'Professional Jockeys',
       title: 'World-class riders competing at the highest level',
-      subtitle: 'Detailed career statistics and awards from verified sources.'
+      subtitle: 'Detailed career statistics and awards from verified sources (updated for 2026 season).'
     },
     hall: {
       eyebrow: 'Hall of Fame',
       title: 'Legendary horses who made racing history',
-      subtitle: 'Retirement and memorial dates are included when available.'
+      subtitle: 'Retirement and memorial dates are included when available, with records refreshed for 2026.'
     },
     wiki: {
       eyebrow: 'Royal Racing Wiki',
@@ -189,7 +189,7 @@ const translations = {
     races: {
       eyebrow: '販売中チケット',
       title: '現在販売中のレース',
-      subtitle: '米国・日本・英国の公式レースのみ掲載。',
+      subtitle: '米国・日本・英国の2026年公式レースを掲載。',
       featuredTitle: '注目レース',
       featuredSubtitle: '最新のカウントダウンと公式データを提供。'
     },
@@ -200,17 +200,17 @@ const translations = {
     horses: {
       eyebrow: '現役競走馬',
       title: '主要レースで活躍するチャンピオン',
-      subtitle: '血統、実績、主要タイトルを掲載。'
+      subtitle: '血統、実績、主要タイトルを掲載（2026年シーズン更新）。'
     },
     jockeys: {
       eyebrow: 'プロジョッキー',
       title: 'トップレベルで戦うライダー',
-      subtitle: '公式記録に基づく詳細なキャリアデータ。'
+      subtitle: '公式記録に基づく詳細なキャリアデータ（2026年更新）。'
     },
     hall: {
       eyebrow: '殿堂入り',
       title: '競馬史に名を刻んだ名馬',
-      subtitle: '引退・追悼日がある場合は記載。'
+      subtitle: '引退・追悼日がある場合は記載（2026年更新）。'
     },
     wiki: {
       eyebrow: 'ロイヤルレーシングWiki',
@@ -337,7 +337,7 @@ const translations = {
     races: {
       eyebrow: 'Vé đang mở bán',
       title: 'Các chặng đua đang bán vé',
-      subtitle: 'Chỉ hiển thị các chặng đua chính thức tại Mỹ, Nhật, Anh.',
+      subtitle: 'Lịch đua chính thức mùa 2026 tại Mỹ, Nhật, Anh.',
       featuredTitle: 'Chặng đua nổi bật',
       featuredSubtitle: 'Sự kiện sắp tới với đồng hồ đếm ngược theo thời gian thực.'
     },
@@ -348,17 +348,17 @@ const translations = {
     horses: {
       eyebrow: 'Ngựa đua đang thi đấu',
       title: 'Những nhà vô địch tại các giải đua danh giá',
-      subtitle: 'Hồ sơ, phả hệ và thành tích nổi bật của từng ngựa.'
+      subtitle: 'Hồ sơ, phả hệ và thành tích nổi bật của từng ngựa (cập nhật mùa 2026).'
     },
     jockeys: {
       eyebrow: 'Nài ngựa chuyên nghiệp',
       title: 'Những tay đua đẳng cấp thế giới',
-      subtitle: 'Thống kê sự nghiệp chi tiết từ nguồn chính thức.'
+      subtitle: 'Thống kê sự nghiệp chi tiết từ nguồn chính thức (cập nhật mùa 2026).'
     },
     hall: {
       eyebrow: 'Hall of Fame',
       title: 'Những huyền thoại tạo nên lịch sử đua ngựa',
-      subtitle: 'Bao gồm thông tin nghỉ hưu hoặc ngày tưởng niệm khi có.'
+      subtitle: 'Bao gồm thông tin nghỉ hưu hoặc ngày tưởng niệm khi có (cập nhật 2026).'
     },
     wiki: {
       eyebrow: 'Wiki Royal Racing',

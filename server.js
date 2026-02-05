@@ -11,7 +11,7 @@ const featuredRaces = [
     id: 'kentucky-derby',
     name: 'Kentucky Derby',
     location: 'Churchill Downs, USA',
-    date: '2025-05-03T18:57:00-04:00',
+    date: '2026-05-03T18:57:00-04:00',
     distance: '1.25 miles',
     horses: 20,
     seatsRemaining: 320,
@@ -22,7 +22,7 @@ const featuredRaces = [
     id: 'royal-ascot',
     name: 'Royal Ascot (Opening Day)',
     location: 'Ascot Racecourse, UK',
-    date: '2025-06-17T13:30:00+01:00',
+    date: '2026-06-17T13:30:00+01:00',
     distance: '1 mile (feature races)',
     horses: 16,
     seatsRemaining: 240,
@@ -33,7 +33,7 @@ const featuredRaces = [
     id: 'arima-kinen',
     name: 'Arima Kinen',
     location: 'Nakayama Racecourse, Japan',
-    date: '2025-12-28T15:25:00+09:00',
+    date: '2026-12-28T15:25:00+09:00',
     distance: '2,500 m',
     horses: 16,
     seatsRemaining: 180,
@@ -44,7 +44,7 @@ const featuredRaces = [
     id: 'breeders-cup-classic',
     name: "Breeders' Cup Classic",
     location: 'Del Mar, USA',
-    date: '2025-11-01T17:45:00-07:00',
+    date: '2026-11-01T17:45:00-07:00',
     distance: '1.25 miles',
     horses: 14,
     seatsRemaining: 210,
@@ -55,7 +55,7 @@ const featuredRaces = [
     id: 'preakness-stakes',
     name: 'Preakness Stakes',
     location: 'Pimlico Race Course, USA',
-    date: '2025-05-17T18:50:00-04:00',
+    date: '2026-05-17T18:50:00-04:00',
     distance: '1 3/16 miles',
     horses: 14,
     seatsRemaining: 200,
@@ -66,7 +66,7 @@ const featuredRaces = [
     id: 'japan-cup',
     name: 'Japan Cup',
     location: 'Tokyo Racecourse, Japan',
-    date: '2025-11-30T15:40:00+09:00',
+    date: '2026-11-30T15:40:00+09:00',
     distance: '2,400 m',
     horses: 18,
     seatsRemaining: 240,
@@ -77,7 +77,7 @@ const featuredRaces = [
     id: 'epsom-derby',
     name: 'Epsom Derby',
     location: 'Epsom Downs, UK',
-    date: '2025-06-07T15:30:00+01:00',
+    date: '2026-06-07T15:30:00+01:00',
     distance: '1 mile 4 furlongs',
     horses: 16,
     seatsRemaining: 190,
@@ -88,7 +88,7 @@ const featuredRaces = [
     id: 'belmont-stakes',
     name: 'Belmont Stakes',
     location: 'Belmont Park, USA',
-    date: '2025-06-07T19:00:00-04:00',
+    date: '2026-06-07T19:00:00-04:00',
     distance: '1.5 miles',
     horses: 12,
     seatsRemaining: 170,
@@ -99,7 +99,7 @@ const featuredRaces = [
     id: 'tenno-sho-autumn',
     name: 'Tenno Sho (Autumn)',
     location: 'Tokyo Racecourse, Japan',
-    date: '2025-11-02T15:40:00+09:00',
+    date: '2026-11-02T15:40:00+09:00',
     distance: '2,000 m',
     horses: 17,
     seatsRemaining: 220,
@@ -110,7 +110,7 @@ const featuredRaces = [
     id: 'cheltenham-gold-cup',
     name: 'Cheltenham Gold Cup',
     location: 'Cheltenham, UK',
-    date: '2025-03-14T15:30:00+00:00',
+    date: '2026-03-14T15:30:00+00:00',
     distance: '3 miles 2½ furlongs',
     horses: 14,
     seatsRemaining: 180,
@@ -121,7 +121,7 @@ const featuredRaces = [
     id: 'grand-national',
     name: 'Grand National',
     location: 'Aintree, UK',
-    date: '2025-04-05T17:15:00+01:00',
+    date: '2026-04-05T17:15:00+01:00',
     distance: '4 miles 2½ furlongs',
     horses: 40,
     seatsRemaining: 320,
@@ -132,7 +132,7 @@ const featuredRaces = [
     id: 'nhk-mile-cup',
     name: 'NHK Mile Cup',
     location: 'Tokyo Racecourse, Japan',
-    date: '2025-05-11T15:40:00+09:00',
+    date: '2026-05-11T15:40:00+09:00',
     distance: '1,600 m',
     horses: 18,
     seatsRemaining: 210,
@@ -143,7 +143,7 @@ const featuredRaces = [
     id: 'tokyo-yushun',
     name: 'Tokyo Yushun (Japanese Derby)',
     location: 'Tokyo Racecourse, Japan',
-    date: '2025-05-25T15:40:00+09:00',
+    date: '2026-05-25T15:40:00+09:00',
     distance: '2,400 m',
     horses: 18,
     seatsRemaining: 260,
@@ -154,7 +154,7 @@ const featuredRaces = [
     id: 'satsuki-sho',
     name: 'Satsuki Sho (Japanese 2000 Guineas)',
     location: 'Nakayama Racecourse, Japan',
-    date: '2025-04-20T15:40:00+09:00',
+    date: '2026-04-20T15:40:00+09:00',
     distance: '2,000 m',
     horses: 18,
     seatsRemaining: 230,
@@ -165,7 +165,7 @@ const featuredRaces = [
     id: 'kikuka-sho',
     name: 'Kikuka Sho (Japanese St. Leger)',
     location: 'Kyoto Racecourse, Japan',
-    date: '2025-10-19T15:40:00+09:00',
+    date: '2026-10-19T15:40:00+09:00',
     distance: '3,000 m',
     horses: 18,
     seatsRemaining: 210,
@@ -176,7 +176,7 @@ const featuredRaces = [
     id: 'tenno-sho-spring',
     name: 'Tenno Sho (Spring)',
     location: 'Kyoto Racecourse, Japan',
-    date: '2025-05-04T15:40:00+09:00',
+    date: '2026-05-04T15:40:00+09:00',
     distance: '3,200 m',
     horses: 18,
     seatsRemaining: 200,
@@ -187,7 +187,7 @@ const featuredRaces = [
     id: 'takarazuka-kinen',
     name: 'Takarazuka Kinen',
     location: 'Hanshin Racecourse, Japan',
-    date: '2025-06-22T15:40:00+09:00',
+    date: '2026-06-22T15:40:00+09:00',
     distance: '2,200 m',
     horses: 16,
     seatsRemaining: 220,
@@ -198,7 +198,7 @@ const featuredRaces = [
     id: 'yasuda-kinen',
     name: 'Yasuda Kinen',
     location: 'Tokyo Racecourse, Japan',
-    date: '2025-06-08T15:40:00+09:00',
+    date: '2026-06-08T15:40:00+09:00',
     distance: '1,600 m',
     horses: 18,
     seatsRemaining: 240,
@@ -209,7 +209,7 @@ const featuredRaces = [
     id: 'osaka-hai',
     name: 'Osaka Hai',
     location: 'Hanshin Racecourse, Japan',
-    date: '2025-03-30T15:40:00+09:00',
+    date: '2026-03-30T15:40:00+09:00',
     distance: '2,000 m',
     horses: 16,
     seatsRemaining: 210,
@@ -220,7 +220,7 @@ const featuredRaces = [
     id: 'japan-cup-dirt',
     name: 'Champions Cup (Japan Cup Dirt)',
     location: 'Chukyo Racecourse, Japan',
-    date: '2025-12-07T15:30:00+09:00',
+    date: '2026-12-07T15:30:00+09:00',
     distance: '1,800 m',
     horses: 16,
     seatsRemaining: 190,
@@ -231,7 +231,7 @@ const featuredRaces = [
     id: 'february-stakes',
     name: 'February Stakes',
     location: 'Tokyo Racecourse, Japan',
-    date: '2025-02-23T15:40:00+09:00',
+    date: '2026-02-23T15:40:00+09:00',
     distance: '1,600 m',
     horses: 16,
     seatsRemaining: 170,
@@ -242,7 +242,7 @@ const featuredRaces = [
     id: 'victoria-mile',
     name: 'Victoria Mile',
     location: 'Tokyo Racecourse, Japan',
-    date: '2025-05-18T15:40:00+09:00',
+    date: '2026-05-18T15:40:00+09:00',
     distance: '1,600 m',
     horses: 16,
     seatsRemaining: 200,
@@ -253,7 +253,7 @@ const featuredRaces = [
     id: 'queen-elizabeth-cup',
     name: 'Queen Elizabeth II Cup',
     location: 'Kyoto Racecourse, Japan',
-    date: '2025-11-16T15:40:00+09:00',
+    date: '2026-11-16T15:40:00+09:00',
     distance: '2,200 m',
     horses: 16,
     seatsRemaining: 210,
@@ -1118,24 +1118,52 @@ jockeys.forEach((jockey) => {
   jockey.imageTitle = jockey.imageTitle || jockey.name;
 });
 
+featuredRaces.forEach((race) => {
+  race.season = '2026';
+});
+
+horses.forEach((horse) => {
+  if (!horse.record.includes('2026')) {
+    horse.record = `${horse.record} (as of 2026 season)`;
+  }
+  if (!horse.titles.includes('2026')) {
+    horse.titles = `${horse.titles} • Updated for 2026 season`;
+  }
+});
+
+hallOfFame.forEach((horse) => {
+  if (!horse.record.includes('2026')) {
+    horse.record = `${horse.record} (as of 2026 season)`;
+  }
+});
+
+jockeys.forEach((jockey) => {
+  if (!jockey.wins.includes('2026')) {
+    jockey.wins = `${jockey.wins} (as of 2026 season)`;
+  }
+  if (!jockey.awards.includes('2026')) {
+    jockey.awards = `${jockey.awards} • 2026 season profile`;
+  }
+});
+
 const news = [
   {
     title: 'Royal Ascot confirms traditional five-day festival schedule',
     source: 'Ascot Racecourse',
     location: 'UK',
-    date: '2024-11-01'
+    date: '2026-01-18'
   },
   {
     title: 'Churchill Downs outlines Kentucky Derby week security upgrades',
     source: 'Churchill Downs',
     location: 'USA',
-    date: '2024-10-10'
+    date: '2026-02-02'
   },
   {
     title: 'Japan Racing Association previews year-end championship meets',
     source: 'JRA',
     location: 'Japan',
-    date: '2024-10-25'
+    date: '2026-02-14'
   }
 ];
 
