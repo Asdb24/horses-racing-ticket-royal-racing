@@ -95,6 +95,23 @@ const translations = {
       loginSuccess: 'Logged in successfully.',
       signupSuccess: 'Account created successfully.'
     },
+    payment: {
+      title: 'Race Ticket Payment',
+      customerName: 'Customer name',
+      chooseSeat: 'Choose your seat',
+      trackLabel: 'Track side',
+      seatHint: 'Premium seats are closest to the track, Gold in the middle, Standard in the top rows.',
+      tierStandard: 'Standard',
+      tierGold: 'Gold',
+      tierPremium: 'Premium',
+      tierStandardDesc: 'Upper theater rows with wide overview of the race.',
+      tierGoldDesc: 'Middle theater rows with balanced track visibility.',
+      tierPremiumDesc: 'Front theater rows nearest to the race road.',
+      race: 'Race',
+      seat: 'Seat',
+      total: 'Total',
+      payNow: 'Pay with Stripe'
+    },
     labels: {
       countdown: 'Countdown',
       seatsLeft: 'Seats left',
@@ -226,6 +243,23 @@ const translations = {
       loginSuccess: 'ログインしました。',
       signupSuccess: 'アカウントを作成しました。'
     },
+    payment: {
+      title: 'レースチケット決済',
+      customerName: '購入者名',
+      chooseSeat: '座席を選択',
+      trackLabel: 'トラック側',
+      seatHint: 'プレミアムは最前列、ゴールドは中央列、スタンダードは上段列です。',
+      tierStandard: 'スタンダード',
+      tierGold: 'ゴールド',
+      tierPremium: 'プレミアム',
+      tierStandardDesc: '上段シアター席で全体を見渡せます。',
+      tierGoldDesc: '中段シアター席でバランスの良い視界。',
+      tierPremiumDesc: 'トラックに最も近い最前列シアター席。',
+      race: 'レース',
+      seat: '座席',
+      total: '合計',
+      payNow: 'Stripeで支払う'
+    },
     labels: {
       countdown: 'カウントダウン',
       seatsLeft: '残席',
@@ -356,6 +390,23 @@ const translations = {
       signupButton: 'Tạo tài khoản',
       loginSuccess: 'Đăng nhập thành công.',
       signupSuccess: 'Tạo tài khoản thành công.'
+    },
+    payment: {
+      title: 'Thanh toán vé chặng đua',
+      customerName: 'Tên khách hàng',
+      chooseSeat: 'Chọn ghế',
+      trackLabel: 'Phía đường đua',
+      seatHint: 'Premium ở hàng gần đường đua, Gold ở giữa, Standard ở hàng trên cùng.',
+      tierStandard: 'Standard',
+      tierGold: 'Gold',
+      tierPremium: 'Premium',
+      tierStandardDesc: 'Hàng ghế trên cao, góc nhìn toàn cảnh.',
+      tierGoldDesc: 'Hàng ghế giữa, tầm nhìn cân bằng.',
+      tierPremiumDesc: 'Hàng ghế đầu gần đường đua nhất.',
+      race: 'Chặng đua',
+      seat: 'Ghế',
+      total: 'Tổng tiền',
+      payNow: 'Thanh toán Stripe'
     },
     labels: {
       countdown: 'Đếm ngược',
@@ -556,6 +607,146 @@ const addTicket = (ticket) => {
   renderTicketsList();
 };
 
+
+const paymentState = {
+  race: null,
+  tierId: 'premium',
+  seatId: null,
+  seatLabel: ''
+};
+
+const paymentTierConfig = () => [
+  {
+    id: 'premium',
+    label: t('payment.tierPremium'),
+    desc: t('payment.tierPremiumDesc'),
+    price: 220,
+    rows: ['A', 'B'],
+    color: '#5b3a22'
+  },
+  {
+    id: 'gold',
+    label: t('payment.tierGold'),
+    desc: t('payment.tierGoldDesc'),
+    price: 150,
+    rows: ['C', 'D'],
+    color: '#b07a2a'
+  },
+  {
+    id: 'standard',
+    label: t('payment.tierStandard'),
+    desc: t('payment.tierStandardDesc'),
+    price: 95,
+    rows: ['E', 'F'],
+    color: '#7b5133'
+  }
+];
+
+const getCurrentTier = () => paymentTierConfig().find((tier) => tier.id === paymentState.tierId) || paymentTierConfig()[0];
+
+const buildSeatMap = () => {
+  const seats = [];
+  paymentTierConfig().forEach((tier) => {
+    tier.rows.forEach((row) => {
+      for (let seat = 1; seat <= 8; seat += 1) {
+        seats.push({
+          id: `${row}-${seat}`,
+          label: `${row}${seat}`,
+          tierId: tier.id
+        });
+      }
+    });
+  });
+  return seats;
+};
+
+const seatMap = buildSeatMap();
+
+const renderPaymentSummary = () => {
+  const summary = document.getElementById('payment-race-summary');
+  const total = document.getElementById('payment-total');
+  if (!summary || !total || !paymentState.race) return;
+
+  const tier = getCurrentTier();
+  summary.innerHTML = `
+    <p><strong>${t('payment.race')}:</strong> ${paymentState.race.name}</p>
+    <p><strong>${t('labels.location')}:</strong> ${paymentState.race.location}</p>
+    <p><strong>${t('payment.seat')}:</strong> ${paymentState.seatLabel || '—'}</p>
+  `;
+  total.innerHTML = `<p><strong>${t('payment.total')}:</strong> $${tier.price}</p>`;
+};
+
+const renderTierChoices = () => {
+  const container = document.getElementById('payment-tier-choice');
+  if (!container) return;
+
+  container.innerHTML = paymentTierConfig()
+    .map(
+      (tier) => `
+      <label class="tier-option ${tier.id === paymentState.tierId ? 'active' : ''}">
+        <input type="radio" name="tierId" value="${tier.id}" ${tier.id === paymentState.tierId ? 'checked' : ''} />
+        <span class="tier-chip" style="background:${tier.color}">${tier.label}</span>
+        <small>${tier.desc}</small>
+        <strong>$${tier.price}</strong>
+      </label>
+    `
+    )
+    .join('');
+
+  container.querySelectorAll('input[name="tierId"]').forEach((input) => {
+    input.addEventListener('change', () => {
+      paymentState.tierId = input.value;
+      paymentState.seatId = null;
+      paymentState.seatLabel = '';
+      renderTierChoices();
+      renderSeatGrid();
+      renderPaymentSummary();
+    });
+  });
+};
+
+const renderSeatGrid = () => {
+  const grid = document.getElementById('seat-grid');
+  if (!grid) return;
+  const selectedTier = getCurrentTier();
+
+  grid.innerHTML = seatMap
+    .map((seat) => {
+      const disabled = seat.tierId !== selectedTier.id;
+      const selected = paymentState.seatId === seat.id;
+      return `
+        <button type="button" class="seat-btn ${selected ? 'selected' : ''}" data-seat-id="${seat.id}" ${disabled ? 'disabled' : ''}>
+          ${seat.label}
+        </button>
+      `;
+    })
+    .join('');
+
+  grid.querySelectorAll('button[data-seat-id]:not([disabled])').forEach((button) => {
+    button.addEventListener('click', () => {
+      paymentState.seatId = button.getAttribute('data-seat-id');
+      paymentState.seatLabel = button.textContent.trim();
+      renderSeatGrid();
+      renderPaymentSummary();
+    });
+  });
+};
+
+const openPaymentModal = (race) => {
+  paymentState.race = race;
+  paymentState.tierId = 'premium';
+  paymentState.seatId = null;
+  paymentState.seatLabel = '';
+  const form = document.getElementById('payment-form');
+  if (form) {
+    form.reset();
+  }
+  renderTierChoices();
+  renderSeatGrid();
+  renderPaymentSummary();
+  openModal('payment-modal');
+};
+
 const getCountdownParts = (targetDate) => {
   const now = new Date();
   const distance = targetDate - now;
@@ -610,28 +801,14 @@ const renderFeaturedRaces = (races) => {
   applyImageFallbacks();
 
   container.querySelectorAll('button[data-race-id]').forEach((button) => {
-    button.addEventListener('click', async () => {
+    button.addEventListener('click', () => {
       const raceId = button.getAttribute('data-race-id');
       const race = races.find((item) => item.id === raceId);
-      const response = await fetch('/api/purchase', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tierId: 'standard', quantity: 1, paymentMethod: 'stripe' })
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        showToast(data.message || t('toast.purchaseError'));
+      if (!race) {
+        showToast(t('toast.purchaseError'));
         return;
       }
-      if (race) {
-        addTicket({
-          title: race.name,
-          detail: `${race.location} • ${race.date}`,
-          price: race.priceUSD
-        });
-      }
-      showToast(t('toast.purchaseOk'));
-      fetchTicketTiers();
+      openPaymentModal(race);
     });
   });
 };
@@ -944,6 +1121,9 @@ const initLanguage = () => {
       fetchJockeys();
       fetchHallOfFame();
       renderTicketsList();
+      renderTierChoices();
+      renderSeatGrid();
+      renderPaymentSummary();
       updateTicketsCount();
     });
   });
@@ -986,6 +1166,47 @@ const initModals = () => {
       showToast(t('auth.signupSuccess'));
       closeModal('signup-modal');
       signupForm.reset();
+    });
+  }
+
+  const paymentForm = document.getElementById('payment-form');
+  if (paymentForm) {
+    paymentForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!paymentState.race || !paymentState.seatId) {
+        showToast(t('toast.purchaseError'));
+        return;
+      }
+
+      const customerName = document.getElementById('payment-customer')?.value?.trim();
+      if (!customerName) {
+        showToast(t('toast.purchaseError'));
+        return;
+      }
+
+      const response = await fetch('/api/purchase', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tierId: paymentState.tierId, quantity: 1, paymentMethod: 'stripe' })
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        showToast(data.message || t('toast.purchaseError'));
+        return;
+      }
+
+      const tier = getCurrentTier();
+      addTicket({
+        title: paymentState.race.name,
+        detail: `${customerName} • ${tier.label} • ${paymentState.seatLabel}`,
+        price: tier.price
+      });
+      showToast(t('toast.purchaseOk'));
+      closeModal('payment-modal');
+      paymentForm.reset();
+      fetchTicketTiers();
+      fetchFeaturedRaces();
     });
   }
 };

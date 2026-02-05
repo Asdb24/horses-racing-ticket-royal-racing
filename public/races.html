@@ -58,13 +58,7 @@
         <div class="cards" id="featured-races"></div>
       </section>
 
-      <section class="section accent" id="ticket-tiers">
-        <div class="section-header">
-          <h2 data-i18n="tiers.title">Ticket Tiers</h2>
-          <p data-i18n="tiers.subtitle">Choose the view that fits your experience. Inventory updates automatically after purchase.</p>
-        </div>
-        <div class="tier-grid" id="ticket-tiers-grid"></div>
-      </section>
+      
     </main>
 
     <footer class="site-footer">
@@ -126,6 +120,32 @@
         </form>
       </div>
     </div>
+
+    <div class="modal" id="payment-modal" aria-hidden="true">
+      <div class="modal-card payment-modal-card">
+        <div class="modal-header">
+          <h3 data-i18n="payment.title">Race Ticket Payment</h3>
+          <button class="icon-button" data-close="payment-modal">✕</button>
+        </div>
+        <form class="modal-body form-grid" id="payment-form">
+          <label>
+            <span data-i18n="payment.customerName">Customer name</span>
+            <input type="text" id="payment-customer" name="customerName" required />
+          </label>
+          <div class="payment-race-summary" id="payment-race-summary"></div>
+          <div class="tier-choice" id="payment-tier-choice"></div>
+          <div>
+            <p class="seat-title" data-i18n="payment.chooseSeat">Choose your seat</p>
+            <div class="seat-stage" data-i18n="payment.trackLabel">Track side</div>
+            <div class="seat-grid" id="seat-grid"></div>
+            <p class="seat-help" data-i18n="payment.seatHint">Premium seats are closest to the track, Gold in the middle, Standard in the top rows.</p>
+          </div>
+          <div class="payment-total" id="payment-total"></div>
+          <button class="primary-button" type="submit" data-i18n="payment.payNow">Pay with Stripe</button>
+        </form>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>

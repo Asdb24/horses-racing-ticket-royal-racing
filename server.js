@@ -266,23 +266,23 @@ const ticketTiers = [
   {
     id: 'standard',
     label: 'Standard',
-    color: '#c7a17a',
+    color: '#7b5133',
     priceUSD: 95,
-    seatsRemaining: 180
+    seatsRemaining: 220
+  },
+  {
+    id: 'gold',
+    label: 'Gold',
+    color: '#b07a2a',
+    priceUSD: 150,
+    seatsRemaining: 140
   },
   {
     id: 'premium',
     label: 'Premium',
-    color: '#9c6b43',
-    priceUSD: 160,
-    seatsRemaining: 90
-  },
-  {
-    id: 'vip',
-    label: 'VIP',
     color: '#5b3a22',
-    priceUSD: 280,
-    seatsRemaining: 35
+    priceUSD: 220,
+    seatsRemaining: 80
   }
 ];
 

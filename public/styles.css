@@ -747,3 +747,96 @@ main {
     justify-self: center;
   }
 }
+
+
+.payment-modal-card {
+  max-width: 760px;
+}
+
+.payment-race-summary,
+.payment-total {
+  background: rgba(243, 231, 214, 0.5);
+  border: 1px solid rgba(75, 47, 29, 0.15);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.tier-choice {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tier-option {
+  border: 1px solid rgba(75, 47, 29, 0.22);
+  border-radius: 12px;
+  padding: 10px;
+  display: grid;
+  gap: 6px;
+  cursor: pointer;
+  background: #fff;
+}
+
+.tier-option input {
+  display: none;
+}
+
+.tier-option.active {
+  border-color: var(--dark-brown);
+  box-shadow: 0 0 0 2px rgba(75, 47, 29, 0.12);
+}
+
+.tier-chip {
+  display: inline-block;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  width: fit-content;
+}
+
+.seat-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.seat-stage {
+  text-align: center;
+  border: 1px solid rgba(75, 47, 29, 0.25);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 10px;
+  background: #fff;
+  font-weight: 600;
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.seat-btn {
+  border: 1px solid rgba(75, 47, 29, 0.28);
+  border-radius: 8px;
+  padding: 8px 4px;
+  font-size: 0.82rem;
+  background: #fff;
+  cursor: pointer;
+}
+
+.seat-btn[disabled] {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.seat-btn.selected {
+  background: var(--dark-brown);
+  color: #fff;
+}
+
+.seat-help {
+  margin-top: 8px;
+  color: rgba(75, 47, 29, 0.75);
+  font-size: 0.86rem;
+}
