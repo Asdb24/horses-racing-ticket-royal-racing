@@ -867,9 +867,13 @@ main {
 }
 
 .hero-intro {
-  color: rgba(255, 248, 240, 0.9);
+  color: var(--dark-brown);
+  background: #ffffff;
   max-width: 900px;
   margin-bottom: 24px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(75, 47, 29, 0.14);
 }
 
 .countdown-inline {
