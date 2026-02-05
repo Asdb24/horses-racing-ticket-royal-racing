@@ -15,7 +15,7 @@ const translations = {
     },
     hero: {
       badge: 'Premium Racing Experience',
-      title: 'Experience the Thrill of Championship Racing',
+      title: 'EXPERIENCE THE THRILL OF CHAMPIONSHIP RACING',
       subtitle:
         'Book your tickets to the most prestigious horse racing events. Witness world-class thoroughbreds compete for glory.',
       ctaPrimary: 'Explore races',
@@ -312,7 +312,7 @@ const translations = {
     },
     hero: {
       badge: 'Trải nghiệm đua ngựa cao cấp',
-      title: 'Trải nghiệm sức hút của những giải đua vô địch',
+      title: 'TRẢI NGHIỆM SỨC HÚT CỦA NHỮNG GIẢI ĐUA VÔ ĐỊCH',
       subtitle: 'Đặt vé cho những sự kiện đua ngựa danh giá nhất. Chứng kiến các chú ngựa đua đẳng cấp tranh tài.',
       ctaPrimary: 'Khám phá chặng đua',
       ctaSecondary: 'Xem hạng vé'
@@ -896,37 +896,18 @@ const renderNextRacePanel = (race) => {
   }
 
   panel.dataset.date = race.date;
-  const labels = {
-    days: t('labels.days'),
-    hours: t('labels.hours'),
-    mins: t('labels.mins'),
-    secs: t('labels.secs')
-  };
+  const year = new Date(race.date).getFullYear();
+  const raceLine = `${race.name} ${year} - ${race.location}`.toUpperCase();
 
   panel.innerHTML = `
-    <div class="countdown-label">${t('labels.nextRaceStarts')}</div>
-    <div class="countdown-grid">
-      <div class="countdown-box">
-        <div class="countdown-value" data-unit="days">--</div>
-        <div class="countdown-unit">${labels.days}</div>
-      </div>
-      <div class="countdown-box">
-        <div class="countdown-value" data-unit="hours">--</div>
-        <div class="countdown-unit">${labels.hours}</div>
-      </div>
-      <div class="countdown-box">
-        <div class="countdown-value" data-unit="mins">--</div>
-        <div class="countdown-unit">${labels.mins}</div>
-      </div>
-      <div class="countdown-box">
-        <div class="countdown-value" data-unit="secs">--</div>
-        <div class="countdown-unit">${labels.secs}</div>
-      </div>
-    </div>
-    <div class="countdown-divider"></div>
-    <div class="countdown-meta">
-      <strong>${race.name}</strong>
-      <span>${race.location}</span>
+    <div class="inline-wrap">
+      <span class="race-line">${raceLine}</span>
+      <span class="time-line">
+        <span data-unit="days">--</span> ${t('labels.days').toUpperCase()} :
+        <span data-unit="hours">--</span> ${t('labels.hours').toUpperCase()} :
+        <span data-unit="mins">--</span> ${t('labels.mins').toUpperCase()} :
+        <span data-unit="secs">--</span> ${t('labels.secs').toUpperCase()}
+      </span>
     </div>
   `;
 };
