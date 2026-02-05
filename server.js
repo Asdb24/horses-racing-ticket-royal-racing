@@ -1107,11 +1107,11 @@ featuredRaces.forEach((race) => {
 });
 
 horses.forEach((horse) => {
-  horse.imageTitle = horse.imageTitle || horse.name;
+  horse.imageTitle = horse.imageTitle || `${horse.name} (horse)|${horse.name}`;
 });
 
 hallOfFame.forEach((horse) => {
-  horse.imageTitle = horse.imageTitle || horse.name;
+  horse.imageTitle = horse.imageTitle || `${horse.name} (horse)|${horse.name}`;
 });
 
 jockeys.forEach((jockey) => {

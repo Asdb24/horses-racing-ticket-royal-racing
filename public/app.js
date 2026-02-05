@@ -526,25 +526,35 @@ const wikiImageCache = new Map();
 
 const resolveWikiImage = async (title) => {
   if (!title) return null;
-  const key = title.trim();
-  if (!key) return null;
-  if (wikiImageCache.has(key)) return wikiImageCache.get(key);
+  const candidates = title
+    .split('|')
+    .map((item) => item.trim())
+    .filter(Boolean);
 
-  const endpoint = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(key)}`;
-  try {
-    const response = await fetch(endpoint);
-    if (!response.ok) {
-      wikiImageCache.set(key, null);
-      return null;
+  for (const key of candidates) {
+    if (wikiImageCache.has(key)) {
+      const cached = wikiImageCache.get(key);
+      if (cached) return cached;
+      continue;
     }
-    const data = await response.json();
-    const url = data?.thumbnail?.source || data?.originalimage?.source || null;
-    wikiImageCache.set(key, url);
-    return url;
-  } catch (error) {
-    wikiImageCache.set(key, null);
-    return null;
+
+    const endpoint = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(key)}`;
+    try {
+      const response = await fetch(endpoint);
+      if (!response.ok) {
+        wikiImageCache.set(key, null);
+        continue;
+      }
+      const data = await response.json();
+      const url = data?.thumbnail?.source || data?.originalimage?.source || null;
+      wikiImageCache.set(key, url);
+      if (url) return url;
+    } catch (error) {
+      wikiImageCache.set(key, null);
+    }
   }
+
+  return null;
 };
 
 const loadWikipediaImages = async () => {
