@@ -1070,6 +1070,37 @@ const jockeys = [
   }
 ];
 
+
+const imageFallbacks = {
+  race: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Ascot_Racecourse_2006.jpg',
+  horse: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Frankel_%28horse%29.jpg',
+  jockey: 'https://upload.wikimedia.org/wikipedia/commons/4/40/Frankie_Dettori_2014.jpg'
+};
+
+featuredRaces.forEach((race) => {
+  if (!race.imageUrl) {
+    race.imageUrl = imageFallbacks.race;
+  }
+});
+
+horses.forEach((horse) => {
+  if (!horse.imageUrl) {
+    horse.imageUrl = imageFallbacks.horse;
+  }
+});
+
+hallOfFame.forEach((horse) => {
+  if (!horse.imageUrl) {
+    horse.imageUrl = imageFallbacks.horse;
+  }
+});
+
+jockeys.forEach((jockey) => {
+  if (!jockey.imageUrl) {
+    jockey.imageUrl = imageFallbacks.jockey;
+  }
+});
+
 const news = [
   {
     title: 'Royal Ascot confirms traditional five-day festival schedule',
@@ -1149,12 +1180,17 @@ const server = http.createServer((req, res) => {
     });
     req.on('end', () => {
       const payload = body ? JSON.parse(body) : {};
-      const { tierId, quantity } = payload;
+      const { tierId, quantity, paymentMethod } = payload;
       const tier = ticketTiers.find((item) => item.id === tierId);
       const amount = Number(quantity);
 
       if (!tier || Number.isNaN(amount) || amount <= 0) {
         sendJson(res, 400, { message: 'Invalid purchase request.' });
+        return;
+      }
+
+      if (paymentMethod && paymentMethod !== 'stripe') {
+        sendJson(res, 400, { message: 'Only Stripe payment is supported.' });
         return;
       }
 
@@ -1167,6 +1203,7 @@ const server = http.createServer((req, res) => {
       sendJson(res, 200, {
         message: 'Purchase confirmed.',
         tierId: tier.id,
+        paymentMethod: 'stripe',
         seatsRemaining: tier.seatsRemaining
       });
     });

@@ -80,7 +80,8 @@ const translations = {
     },
     tickets: {
       title: 'My Tickets',
-      empty: 'No tickets purchased yet.'
+      empty: 'No tickets purchased yet.',
+      remove: 'Remove ticket'
     },
     auth: {
       loginTitle: 'Login',
@@ -100,6 +101,8 @@ const translations = {
       horsesCount: 'horses',
       buyTicket: 'Buy ticket',
       bookTier: 'Book',
+      paymentMethod: 'Payment method',
+      stripeCard: 'Stripe (Card)',
       nextRaceStarts: 'Next Race Starts In',
       schedule: 'Schedule',
       startsOn: 'Starts on',
@@ -208,7 +211,8 @@ const translations = {
     },
     tickets: {
       title: 'チケット一覧',
-      empty: '購入済みチケットはありません。'
+      empty: '購入済みチケットはありません。',
+      remove: 'チケットを削除'
     },
     auth: {
       loginTitle: 'ログイン',
@@ -228,6 +232,8 @@ const translations = {
       horsesCount: '頭',
       buyTicket: 'チケット購入',
       bookTier: '予約',
+      paymentMethod: '支払い方法',
+      stripeCard: 'Stripe（カード）',
       nextRaceStarts: '次のレース開始まで',
       schedule: '日程',
       startsOn: '開催日',
@@ -336,7 +342,8 @@ const translations = {
     },
     tickets: {
       title: 'Vé của tôi',
-      empty: 'Chưa có vé nào được mua.'
+      empty: 'Chưa có vé nào được mua.',
+      remove: 'Xóa vé'
     },
     auth: {
       loginTitle: 'Đăng nhập',
@@ -356,6 +363,8 @@ const translations = {
       horsesCount: 'ngựa',
       buyTicket: 'Mua vé',
       bookTier: 'Đặt',
+      paymentMethod: 'Phương thức thanh toán',
+      stripeCard: 'Stripe (Thẻ)',
       nextRaceStarts: 'Chặng đua tiếp theo bắt đầu sau',
       schedule: 'Lịch thi đấu',
       startsOn: 'Ngày khởi tranh',
@@ -475,14 +484,24 @@ const updateTicketsCount = () => {
   button.textContent = `${label} (${count})`;
 };
 
+const removeTicket = (ticketId) => {
+  const tickets = getTickets();
+  const updated = tickets.filter((ticket) => ticket.id !== ticketId);
+  saveTickets(updated);
+  updateTicketsCount();
+  renderTicketsList();
+};
+
 const renderTicketsList = () => {
   const list = document.getElementById('tickets-list');
   if (!list) return;
   const tickets = getTickets();
   if (tickets.length === 0) {
+    list.classList.remove('tickets-list');
     list.innerHTML = `<p>${t('tickets.empty')}</p>`;
     return;
   }
+
   list.classList.add('tickets-list');
   list.innerHTML = tickets
     .map(
@@ -491,10 +510,15 @@ const renderTicketsList = () => {
         <strong>${ticket.title}</strong>
         <p>${ticket.detail}</p>
         <p>$${ticket.price}</p>
+        <button class="danger-button" data-ticket-remove="${ticket.id}">${t('tickets.remove')}</button>
       </div>
     `
     )
     .join('');
+
+  list.querySelectorAll('[data-ticket-remove]').forEach((button) => {
+    button.addEventListener('click', () => removeTicket(button.getAttribute('data-ticket-remove')));
+  });
 };
 
 const openModal = (id) => {
@@ -523,7 +547,10 @@ const showToast = (message) => {
 
 const addTicket = (ticket) => {
   const tickets = getTickets();
-  tickets.push(ticket);
+  tickets.push({
+    ...ticket,
+    id: ticket.id || `${Date.now()}-${Math.random().toString(16).slice(2)}`
+  });
   saveTickets(tickets);
   updateTicketsCount();
   renderTicketsList();
@@ -589,7 +616,7 @@ const renderFeaturedRaces = (races) => {
       const response = await fetch('/api/purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tierId: 'standard', quantity: 1 })
+        body: JSON.stringify({ tierId: 'standard', quantity: 1, paymentMethod: 'stripe' })
       });
       const data = await response.json();
       if (!response.ok) {
@@ -689,6 +716,7 @@ const renderTicketTiers = (tiers) => {
         <span style="background:${tier.color}; color: #fff;">${tier.label}</span>
         <h3>$${tier.priceUSD}</h3>
         <p>${t('labels.seatsLeft')}: <strong>${tier.seatsRemaining}</strong></p>
+        <p class="payment-note"><strong>${t('labels.paymentMethod')}:</strong> ${t('labels.stripeCard')}</p>
         <button class="ghost-button" data-tier="${tier.id}" data-tier-name="${tier.label}" data-tier-price="${tier.priceUSD}">${t('labels.bookTier')} ${tier.label}</button>
       </article>
     `
@@ -703,7 +731,7 @@ const renderTicketTiers = (tiers) => {
       const response = await fetch('/api/purchase', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tierId, quantity: 1 })
+        body: JSON.stringify({ tierId, quantity: 1, paymentMethod: 'stripe' })
       });
 
       const data = await response.json();
@@ -905,6 +933,7 @@ const fetchHallOfFame = async () => {
 const initLanguage = () => {
   const current = getLanguage();
   setLanguage(current);
+  renderTicketsList();
   document.querySelectorAll('.js-language').forEach((select) => {
     select.addEventListener('change', (event) => {
       setLanguage(event.target.value);
@@ -914,6 +943,8 @@ const initLanguage = () => {
       fetchHorses();
       fetchJockeys();
       fetchHallOfFame();
+      renderTicketsList();
+      updateTicketsCount();
     });
   });
 };
