@@ -521,6 +521,45 @@ const applyImageFallbacks = () => {
   });
 };
 
+
+const wikiImageCache = new Map();
+
+const resolveWikiImage = async (title) => {
+  if (!title) return null;
+  const key = title.trim();
+  if (!key) return null;
+  if (wikiImageCache.has(key)) return wikiImageCache.get(key);
+
+  const endpoint = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(key)}`;
+  try {
+    const response = await fetch(endpoint);
+    if (!response.ok) {
+      wikiImageCache.set(key, null);
+      return null;
+    }
+    const data = await response.json();
+    const url = data?.thumbnail?.source || data?.originalimage?.source || null;
+    wikiImageCache.set(key, url);
+    return url;
+  } catch (error) {
+    wikiImageCache.set(key, null);
+    return null;
+  }
+};
+
+const loadWikipediaImages = async () => {
+  const images = Array.from(document.querySelectorAll('img[data-image-title]'));
+  await Promise.all(
+    images.map(async (img) => {
+      const title = img.getAttribute('data-image-title');
+      const url = await resolveWikiImage(title);
+      if (url) {
+        img.src = url;
+      }
+    })
+  );
+};
+
 const getTickets = () => JSON.parse(localStorage.getItem('rr-tickets') || '[]');
 
 const saveTickets = (tickets) => {
@@ -780,7 +819,7 @@ const renderFeaturedRaces = (races) => {
           </span>
         </div>
         <div class="media-frame">
-          <img src="${withFallback(race.imageUrl)}" alt="${race.name}" loading="lazy" data-fallback="logo" />
+          <img src="${logoFallback}" alt="${race.name}" loading="lazy" data-fallback="logo" data-image-title="${race.imageTitle || race.name}" />
         </div>
         <div>
           <h3>${race.name}</h3>
@@ -799,6 +838,7 @@ const renderFeaturedRaces = (races) => {
     )
     .join('');
   applyImageFallbacks();
+  loadWikipediaImages();
 
   container.querySelectorAll('button[data-race-id]').forEach((button) => {
     button.addEventListener('click', () => {
@@ -978,7 +1018,7 @@ const renderHorseCards = (horses) => {
       (horse) => `
       <article class="profile-card">
         <div class="media-frame">
-          <img src="${withFallback(horse.imageUrl)}" alt="${horse.name}" loading="lazy" data-fallback="logo" />
+          <img src="${logoFallback}" alt="${horse.name}" loading="lazy" data-fallback="logo" data-image-title="${horse.imageTitle || horse.name}" />
         </div>
         <div class="profile-header">
           <div>
@@ -996,6 +1036,7 @@ const renderHorseCards = (horses) => {
     )
     .join('');
   applyImageFallbacks();
+  loadWikipediaImages();
 };
 
 const renderJockeyCards = (jockeys) => {
@@ -1009,7 +1050,7 @@ const renderJockeyCards = (jockeys) => {
       (jockey) => `
       <article class="profile-card">
         <div class="media-frame">
-          <img src="${withFallback(jockey.imageUrl)}" alt="${jockey.name}" loading="lazy" data-fallback="logo" />
+          <img src="${logoFallback}" alt="${jockey.name}" loading="lazy" data-fallback="logo" data-image-title="${jockey.imageTitle || jockey.name}" />
         </div>
         <div class="profile-header">
           <div>
@@ -1028,6 +1069,7 @@ const renderJockeyCards = (jockeys) => {
     )
     .join('');
   applyImageFallbacks();
+  loadWikipediaImages();
 };
 
 const renderHallCards = (horses) => {
@@ -1041,7 +1083,7 @@ const renderHallCards = (horses) => {
       (horse) => `
       <article class="profile-card">
         <div class="media-frame">
-          <img src="${withFallback(horse.imageUrl)}" alt="${horse.name}" loading="lazy" data-fallback="logo" />
+          <img src="${logoFallback}" alt="${horse.name}" loading="lazy" data-fallback="logo" data-image-title="${horse.imageTitle || horse.name}" />
         </div>
         <div class="profile-header">
           <div>
@@ -1060,6 +1102,7 @@ const renderHallCards = (horses) => {
     )
     .join('');
   applyImageFallbacks();
+  loadWikipediaImages();
 };
 
 const fetchFeaturedRaces = async () => {

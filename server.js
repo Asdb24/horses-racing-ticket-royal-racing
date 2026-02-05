@@ -1101,6 +1101,23 @@ jockeys.forEach((jockey) => {
   }
 });
 
+
+featuredRaces.forEach((race) => {
+  race.imageTitle = race.imageTitle || race.location.split(',')[0].trim();
+});
+
+horses.forEach((horse) => {
+  horse.imageTitle = horse.imageTitle || horse.name;
+});
+
+hallOfFame.forEach((horse) => {
+  horse.imageTitle = horse.imageTitle || horse.name;
+});
+
+jockeys.forEach((jockey) => {
+  jockey.imageTitle = jockey.imageTitle || jockey.name;
+});
+
 const news = [
   {
     title: 'Royal Ascot confirms traditional five-day festival schedule',
@@ -1218,7 +1235,6 @@ const server = http.createServer((req, res) => {
     '/horses.html': 'horses.html',
     '/jockeys.html': 'jockeys.html',
     '/hall-of-fame.html': 'hall-of-fame.html',
-    '/wiki.html': 'wiki.html'
   };
 
   if (req.method === 'GET' && htmlRoutes[pathname]) {
