@@ -154,10 +154,17 @@ main {
 .hero-home {
   text-align: left;
   justify-items: start;
+  grid-template-columns: 1fr;
 }
 
 .hero-home .hero-content {
   max-width: 600px;
+}
+
+.hero-home .countdown-card {
+  margin-top: 24px;
+  text-align: left;
+  justify-self: start;
 }
 
 .hero-content h1 {
@@ -446,10 +453,6 @@ main {
   text-align: center;
 }
 
-.hero-home .countdown-card {
-  text-align: left;
-  justify-self: end;
-}
 
 .countdown-card h3 {
   font-size: 1.4rem;
